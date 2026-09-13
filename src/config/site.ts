@@ -1,8 +1,14 @@
-import type { Route } from "next"
+import type { Route } from "next";
 
-import type { NavItem } from "@/types/nav"
-import { SOCIAL } from "@/features/portfolio/data/social-links"
-import { USER } from "@/features/portfolio/data/user"
+
+
+import type { NavItem } from "@/types/nav";
+import { SOCIAL } from "@/features/portfolio/data/social-links";
+import { USER } from "@/features/portfolio/data/user";
+
+
+
+
 
 export const SITE_INFO = {
   name: USER.displayName,
@@ -48,5 +54,5 @@ export const SOURCE_CODE_GITHUB_URL =
   "https://github.com/hasan-mavlonov/hasanmavlonov-site"
 
 export const UTM_PARAMS = {
-  utm_source: "hasanmavlonov.com",
+  utm_source: "https://hasanmavlonov.com",
 }
