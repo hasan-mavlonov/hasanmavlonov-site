@@ -1,6 +1,6 @@
-import { CameraIcon, SmileIcon, SquareCodeIcon } from "lucide-react"
+import { SmileIcon, SquareCodeIcon } from "lucide-react"
 
-import { GitHubIcon, XIcon } from "@/components/icons"
+import { GitHubIcon, InstagramIcon, XIcon } from "@/components/icons"
 import type { SocialName } from "@/features/portfolio/data/social-links"
 
 /**
@@ -11,7 +11,7 @@ import type { SocialName } from "@/features/portfolio/data/social-links"
 export const SOCIAL_ICONS: Record<SocialName, React.JSX.Element> = {
   github: <GitHubIcon />,
   x: <XIcon />,
-  instagram: <CameraIcon />,
+  instagram: <InstagramIcon />,
   huggingface: <SmileIcon />,
   leetcode: <SquareCodeIcon />,
 }

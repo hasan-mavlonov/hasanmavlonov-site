@@ -1,7 +1,6 @@
 import dynamic from "next/dynamic"
 
 import { SiteBottomNav } from "@/components/site-bottom-nav"
-import { SiteFooterCad } from "@/components/site-footer-cad"
 import { SiteHeader } from "@/components/site-header"
 
 const ScrollToTop = dynamic(() =>
@@ -16,7 +15,6 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     <div className="group/layout relative isolate">
       <SiteHeader />
       <main className="max-w-screen overflow-x-clip px-2">{children}</main>
-      <SiteFooterCad />
       <div
         className="pointer-events-none fixed inset-x-0 bottom-0 z-50"
         aria-hidden
