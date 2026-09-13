@@ -1,33 +1,114 @@
+import { format } from "date-fns"
+import { Crown, Paperclip } from "lucide-react"
+
+import { IconTile } from "@/components/ui/icon-tile"
+import {
+  Collapsible,
+  CollapsibleChevronsUpDownIcon,
+} from "@/components/base/collapsible-animated"
+import {
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/base/ui/collapsible"
+import { Separator } from "@/components/base/ui/separator"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/base/ui/tooltip"
+import { Markdown } from "@/components/markdown"
 import type { Award } from "@/features/portfolio/types/awards"
 
-/** Tabular row: year, title, prize. No prose, no boxes. */
-export function AwardItem({ award }: { award: Award }) {
-  const year = award.date.slice(0, 4)
+export function AwardItem({
+  className,
+  award,
+}: {
+  className?: string
+  award: Award
+}) {
+  const canExpand = !!award.description
+
   return (
-    <div className="grid grid-cols-[auto_minmax(0,1fr)] items-baseline gap-x-4 gap-y-1 px-4 py-3.5 md:grid-cols-[148px_minmax(0,1fr)_auto] md:gap-x-8">
-      <time
-        className="font-mono text-xs text-muted-foreground tabular-nums"
-        dateTime={award.date}
-      >
-        {year}
-      </time>
-      <h3 className="text-[15px]/[1.4] font-medium text-balance">
-        {award.referenceLink ? (
-          <a
-            className="link"
-            href={award.referenceLink}
-            target="_blank"
-            rel="noopener"
-          >
-            {award.title}
-          </a>
-        ) : (
-          award.title
-        )}
-      </h3>
-      <span className="col-start-2 type-label text-[10.5px] text-brand md:col-start-3 md:text-right">
-        {award.prize}
-      </span>
-    </div>
+    <Collapsible className={className} disabled={!canExpand}>
+      <CollapsibleTrigger className="flex w-full items-center text-left hover:bg-accent-muted">
+        <IconTile className="mx-4">{award.icon ?? <Crown />}</IconTile>
+
+        <div className="flex flex-1 items-center gap-2 border-l border-dashed border-line p-4 pr-2">
+          <div className="flex-1">
+            <h3 className="mb-1 leading-snug font-medium text-balance">
+              {award.title}
+            </h3>
+
+            <dl className="flex flex-wrap items-center gap-x-2 text-sm text-muted-foreground">
+              <div>
+                <dt className="sr-only">Prize</dt>
+                <dd>{award.prize}</dd>
+              </div>
+
+              <Separator
+                className="data-vertical:h-4 data-vertical:self-center"
+                orientation="vertical"
+                aria-hidden
+              />
+
+              <div>
+                <dt className="sr-only">Awarded in</dt>
+                <dd>
+                  <time dateTime={new Date(award.date).toISOString()}>
+                    {format(new Date(award.date), "MM.yyyy")}
+                  </time>
+                </dd>
+              </div>
+
+              <Separator
+                className="data-vertical:h-4 data-vertical:self-center"
+                orientation="vertical"
+                aria-hidden
+              />
+
+              <div>
+                <dt className="sr-only">Received in Grade</dt>
+                <dd>{award.grade}</dd>
+              </div>
+            </dl>
+          </div>
+
+          {award.referenceLink && (
+            <Tooltip>
+              <TooltipTrigger
+                render={
+                  <a
+                    className="relative flex size-6 shrink-0 items-center justify-center text-muted-foreground after:absolute after:-inset-2 hover:text-foreground [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4"
+                    href={award.referenceLink}
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Open reference attachment"
+                  >
+                    <Paperclip />
+                  </a>
+                }
+              />
+              <TooltipContent>
+                <p>Open reference attachment</p>
+              </TooltipContent>
+            </Tooltip>
+          )}
+
+          {canExpand && (
+            <div className="shrink-0 text-muted-foreground [&_svg]:size-4">
+              <CollapsibleChevronsUpDownIcon duration={0.15} />
+            </div>
+          )}
+        </div>
+      </CollapsibleTrigger>
+
+      {canExpand && (
+        <CollapsibleContent className="overflow-hidden">
+          <div className="typeset typeset-description border-t border-line p-4">
+            <Markdown>{award.description}</Markdown>
+          </div>
+        </CollapsibleContent>
+      )}
+    </Collapsible>
   )
 }

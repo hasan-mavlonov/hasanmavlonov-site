@@ -23,7 +23,7 @@ export function PostItem({
       {post.metadata.image && (
         <div className="relative select-none [--image-radius:var(--radius-xl)]">
           <Image
-            className="group-hover/post:-0 aspect-1200/630 rounded-(--image-radius) ease-[cubic-bezier(0.42,0,0.58,1)]"
+            className="aspect-1200/630 rounded-(--image-radius) grayscale transition-[filter] duration-300 ease-[cubic-bezier(0.42,0,0.58,1)] group-hover/post:grayscale-0"
             src={post.metadata.image}
             alt={post.metadata.title}
             width={1200}

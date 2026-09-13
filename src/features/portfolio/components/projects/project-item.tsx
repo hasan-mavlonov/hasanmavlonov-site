@@ -1,108 +1,127 @@
+import Image from "next/image"
 import { addQueryParams } from "@/utils/url"
+import { BoxIcon, InfinityIcon, LinkIcon } from "lucide-react"
 
 import { UTM_PARAMS } from "@/config/site"
-import { cn } from "@/lib/utils"
+import { IconTile } from "@/components/ui/icon-tile"
+import { Tag } from "@/components/ui/tag"
+import {
+  Collapsible,
+  CollapsibleChevronsUpDownIcon,
+} from "@/components/base/collapsible-animated"
+import {
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/base/ui/collapsible"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/base/ui/tooltip"
 import { Markdown } from "@/components/markdown"
 
 import type { Project } from "../../types/projects"
-import { periodYear } from "../experiences/period"
 
-/**
- * Bordered panel, no radius, no shadow: index strip, name, owner, role chip,
- * body, tags, then one amber primary action and a hairline secondary.
- */
 export function ProjectItem({
+  className,
   project,
-  index,
 }: {
+  className?: string
   project: Project
-  index: number
 }) {
-  const actions = project.actions?.length
-    ? project.actions
-    : [{ label: "Open", href: project.link }]
-  const year = periodYear(project.period.start)
-  const status = project.status ?? (project.period.end ? "shipped" : "live")
+  const { start, end } = project.period
+  const isOngoing = !end
+  const isSinglePeriod = end === start
 
   return (
-    <article className="border border-border bg-card text-card-foreground">
-      <div className="flex items-center justify-between gap-4 border-b border-border px-5 py-2.5 font-mono text-[10.5px] tracking-[0.12em] text-muted-foreground uppercase">
-        <span>
-          {String(index + 1).padStart(2, "0")} — {project.skills[0]}
-        </span>
-        <span className="flex items-center gap-2 tabular-nums">
-          {year}
-          <span aria-hidden>·</span>
-          <span className={status === "live" ? "text-[#9AD45F]" : undefined}>
-            {status === "live" && (
-              <span
-                className="mr-1.5 inline-block size-1.5 bg-current align-middle"
-                aria-hidden
-              />
-            )}
-            {status}
-          </span>
-        </span>
-      </div>
+    <Collapsible className={className} defaultOpen={project.isExpanded}>
+      <CollapsibleTrigger className="group/project flex w-full items-center text-left hover:bg-accent-muted">
+        {project.logo ? (
+          <Image
+            src={project.logo}
+            alt={project.title}
+            width={32}
+            height={32}
+            quality={100}
+            className="mx-4 flex size-6 shrink-0 grayscale select-none group-hover/project:grayscale-0"
+            unoptimized
+            aria-hidden
+          />
+        ) : (
+          <IconTile className="mx-4">{project.icon ?? <BoxIcon />}</IconTile>
+        )}
 
-      <div className="px-5 py-6 md:px-6">
-        <h3 className="font-display text-[28px]/[1.1] font-bold tracking-[-0.03em] text-balance">
-          {project.title}
-        </h3>
-        {(project.owner || project.role) && (
-          <div className="mt-2 flex flex-wrap items-center gap-3">
-            {project.owner && (
-              <span className="type-label text-[11px] text-brand">
-                {project.owner}
-              </span>
-            )}
-            {project.role && (
-              <span className="border border-border px-2 py-0.5 font-mono text-[10px] tracking-[0.1em] text-muted-foreground uppercase">
-                {project.role}
-              </span>
-            )}
+        <div className="flex flex-1 items-center gap-2 border-l border-dashed border-line p-4 pr-2">
+          <div className="flex-1">
+            <h3 className="mb-1 leading-snug font-medium text-balance">
+              {project.title}
+            </h3>
+
+            <dl className="text-sm text-muted-foreground">
+              <dt className="sr-only">Period</dt>
+              <dd className="flex items-center gap-0.5">
+                <span>{start}</span>
+                {!isSinglePeriod && (
+                  <>
+                    <span className="font-mono">—</span>
+                    {isOngoing ? (
+                      <InfinityIcon
+                        className="size-4.5 translate-y-[0.5px]"
+                        aria-label="Present"
+                      />
+                    ) : (
+                      <span>{end}</span>
+                    )}
+                  </>
+                )}
+              </dd>
+            </dl>
           </div>
-        )}
 
-        {project.description && (
-          <div className="typeset typeset-body mt-5 max-w-[70ch]">
-            <Markdown>{project.description}</Markdown>
+          <Tooltip>
+            <TooltipTrigger
+              render={
+                <a
+                  className="relative flex size-6 shrink-0 items-center justify-center text-muted-foreground after:absolute after:-inset-2 hover:text-foreground"
+                  href={addQueryParams(project.link, UTM_PARAMS)}
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Open project"
+                >
+                  <LinkIcon className="pointer-events-none size-4" />
+                </a>
+              }
+            />
+            <TooltipContent>
+              <p>Open project</p>
+            </TooltipContent>
+          </Tooltip>
+
+          <div className="shrink-0 text-muted-foreground [&_svg]:size-4">
+            <CollapsibleChevronsUpDownIcon duration={0.15} />
           </div>
-        )}
-
-        {project.skills.length > 1 && (
-          <ul className="mt-5 flex flex-wrap gap-1.5">
-            {project.skills.slice(1).map((skill) => (
-              <li
-                key={skill}
-                className="border border-border px-2 py-0.75 font-mono text-[11px] text-muted-foreground"
-              >
-                {skill}
-              </li>
-            ))}
-          </ul>
-        )}
-
-        <div className="mt-6 flex flex-col gap-2 sm:flex-row">
-          {actions.map((action, i) => (
-            <a
-              key={action.href}
-              href={addQueryParams(action.href, UTM_PARAMS)}
-              target="_blank"
-              rel="noopener"
-              className={cn(
-                "inline-flex min-h-11 items-center justify-center px-4 font-mono text-[11.5px] tracking-[0.12em] uppercase transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none sm:min-h-9",
-                i === 0
-                  ? "bg-brand-fill text-brand-foreground hover:bg-[#FFC85E]"
-                  : "border border-border text-foreground hover:border-brand hover:text-brand"
-              )}
-            >
-              {action.label}
-              {i > 0 && <span aria-hidden> ↗</span>}
-            </a>
-          ))}
         </div>
-      </div>
-    </article>
+      </CollapsibleTrigger>
+
+      <CollapsibleContent className="overflow-hidden">
+        <div className="space-y-4 border-t border-line p-4">
+          {project.description && (
+            <div className="typeset typeset-description">
+              <Markdown>{project.description}</Markdown>
+            </div>
+          )}
+
+          {project.skills.length > 0 && (
+            <ul className="flex flex-wrap gap-1.5">
+              {project.skills.map((skill, index) => (
+                <li key={index} className="flex">
+                  <Tag>{skill}</Tag>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </CollapsibleContent>
+    </Collapsible>
   )
 }

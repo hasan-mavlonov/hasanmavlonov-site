@@ -17,19 +17,6 @@ export const PROJECTS: Project[] = [
 `,
     icon: <BrainIcon />,
     isExpanded: true,
-    owner: "MindForm AI",
-    role: "CTO · lead author",
-    status: "live",
-    actions: [
-      {
-        label: "Try the demo",
-        href: "https://huggingface.co/spaces/hasanmavlonov/stablemind",
-      },
-      {
-        label: "Read the paper",
-        href: "https://doi.org/10.5281/zenodo.20593641",
-      },
-    ],
   },
   {
     id: "ancient-engineering-simulation",
@@ -41,7 +28,6 @@ export const PROJECTS: Project[] = [
     skills: ["Simulation", "Interactive education"],
     description: `An interactive system that reconstructs ancient engineering and construction logic. Recognized in the 2026 Shanghai University Computer Application Competition.`,
     icon: <LandmarkIcon />,
-    status: "shipped",
   },
   {
     id: "tracky",
@@ -54,6 +40,5 @@ export const PROJECTS: Project[] = [
     skills: ["Django", "PostgreSQL", "RFID"],
     description: `A real-time RFID inventory and point-of-sale backend. Cut label printing hardware cost by about 97% by mapping barcodes to RFID codes at print time, so cheap thermal printers replaced industrial RFID printers.`,
     icon: <ScanBarcodeIcon />,
-    status: "shipped",
   },
 ]

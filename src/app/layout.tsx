@@ -27,11 +27,8 @@ function getWebSiteJsonLd(): WithContext<WebSite> {
 // Thanks @shadcn-ui, @tailwindcss
 const darkModeScript = String.raw`
   try {
-    // Dark is the default theme, so the server sends the navy chrome colour;
-    // only an explicit or system-resolved light preference swaps it.
-    var t = localStorage.theme
-    if (t === 'light' || (t === 'system' && !window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.querySelector('meta[name="theme-color"]').setAttribute('content', '${META_THEME_COLORS.light}')
+    if (localStorage.theme === 'dark' || ((!('theme' in localStorage) || localStorage.theme === 'system') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '${META_THEME_COLORS.dark}')
     }
   } catch (_) {}
 
@@ -104,7 +101,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: META_THEME_COLORS.dark,
+  themeColor: META_THEME_COLORS.light,
 }
 
 export default function RootLayout({

@@ -6,10 +6,12 @@ export const USER: User = {
   displayName: "Hasan Mavlonov",
   username: "hasan-mavlonov",
   bio: "CTO and co-founder building persistent personality and identity infrastructure for AI agents.",
-  statement:
-    "I build persistent personality and identity infrastructure for AI agents.",
-  subtitle:
-    "Traits measured, anchored and restored across sessions, so an agent stays the same entity after the context is gone instead of resetting to the base model.",
+  flipSentences: [
+    "CTO and co-founder, MindForm AI.",
+    "I build persistent identity for AI agents.",
+    "CTO at Defex, self-teaching assembly robots.",
+    "B.Sc. in Artificial Intelligence at ECUST.",
+  ],
   address: "Shanghai, China",
   emailB64: "aGFzYW5AbWluZGZvcm0tYWkuY29t", // base64 encoded
   website: "https://hasanmavlonov.com",

@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="HM">
   <style>
-    .mark { fill: #0a1220 }
+    .mark { fill: #09090b }
     @media (prefers-color-scheme: dark) {
-      .mark { fill: #e6edf5 }
+      .mark { fill: #fafafa }
     }
   </style>
   <g transform="translate(72 164) scale(0.822)">

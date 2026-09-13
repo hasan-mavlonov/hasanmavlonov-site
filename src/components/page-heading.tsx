@@ -27,7 +27,10 @@ export function PageHeadingTagline({
   return (
     <div
       data-slot="page-heading-tagline"
-      className={cn("px-4 pb-2 type-label text-muted-foreground", className)}
+      className={cn(
+        "px-4 pb-2 font-heading text-sm/none font-medium tracking-wider text-muted-foreground",
+        className
+      )}
       {...props}
     />
   )
@@ -42,7 +45,7 @@ export function PageHeadingTitle({
       data-slot="page-heading-title"
       className={cn(
         "screen-line-top screen-line-bottom px-4",
-        "type-display-l text-balance",
+        "font-heading text-4xl font-medium tracking-tight text-balance",
         className
       )}
       {...props}
