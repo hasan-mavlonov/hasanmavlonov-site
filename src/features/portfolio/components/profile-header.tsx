@@ -3,6 +3,7 @@ import { USER } from "@/features/portfolio/data/user"
 import { Avatar } from "./avatar"
 import { FlipSentences } from "./flip-sentences"
 import { PronounceMyName } from "./pronounce-my-name"
+import { ReachPlate } from "./reach-plate"
 import { Signature } from "./signature"
 
 const INITIALS = `${USER.firstName.at(0) ?? ""}${USER.lastName.at(0) ?? ""}`
@@ -10,8 +11,10 @@ const INITIALS = `${USER.firstName.at(0) ?? ""}${USER.lastName.at(0) ?? ""}`
 export function ProfileHeader() {
   return (
     <div className="screen-line-bottom grid grid-cols-[auto_1fr] grid-rows-[1fr_auto] overflow-y-clip border-x screen-line-bottom-border after:z-1">
-      <figure className="relative col-span-2 flex items-center justify-center p-2 sm:col-span-1 sm:col-start-2 sm:p-4">
-        <Signature className="text-[2.25rem]/none min-[24rem]:text-[2.75rem]/none sm:text-[4rem]/none">
+      <figure className="relative col-span-2 flex items-center justify-center gap-4 p-2 sm:col-span-1 sm:col-start-2 sm:p-4 sm:pr-12">
+        <ReachPlate className="hidden h-24 w-auto max-w-[40%] shrink sm:block" />
+
+        <Signature className="text-[2.25rem]/none min-[24rem]:text-[2.75rem]/none sm:text-[3.25rem]/none">
           {USER.displayName}
         </Signature>
 

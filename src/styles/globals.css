@@ -94,6 +94,56 @@
 
   --color-signature: var(--signature);
 
+  /* The plate artwork: two forms drift together, hold just short of
+     touching, then pull apart. One cycle, forever. */
+  --animate-reach-in: reach-in 5.4s ease-in-out infinite;
+  --animate-reach-out: reach-out 5.4s ease-in-out infinite;
+  --animate-reach-seam: reach-seam 5.4s ease-in-out infinite;
+  --animate-reach-slice: reach-slice 5.4s ease-in-out infinite;
+
+  @keyframes reach-in {
+    0%,
+    100% {
+      translate: 0;
+    }
+    42% {
+      translate: 28px;
+    }
+  }
+
+  @keyframes reach-out {
+    0%,
+    100% {
+      translate: 0;
+    }
+    42% {
+      translate: -28px;
+    }
+  }
+
+  @keyframes reach-seam {
+    0%,
+    100% {
+      opacity: 0;
+    }
+    42% {
+      opacity: 1;
+    }
+  }
+
+  /* Sheared apart at rest, flush at the moment of contact, which is how the
+     slices read in the reference: melted when the forms are far, hard-edged
+     when they meet. */
+  @keyframes reach-slice {
+    0%,
+    100% {
+      translate: var(--slice) 0;
+    }
+    42% {
+      translate: 0;
+    }
+  }
+
   --animate-signature-draw: signature-draw
     var(--tw-animation-duration, var(--tw-duration, 1.6s))
     cubic-bezier(0.65, 0.02, 0.35, 1) 0.25s both;

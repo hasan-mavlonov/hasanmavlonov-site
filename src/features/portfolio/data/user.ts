@@ -39,6 +39,7 @@ export const USER: User = {
 - Studying Artificial Intelligence at East China University of Science and Technology in Shanghai. Before this I shipped backends: Django, FastAPI, PostgreSQL, and one RFID inventory system that cut label printing hardware cost by about 97%.
 `,
   avatar: "/monogram.svg",
+  photo: "/hasan-mavlonov.jpg",
   ogImage:
     "/og/simple?title=Hasan%20Mavlonov&description=CTO%20%26%20Co-founder%2C%20MindForm%20AI",
   keywords: [
