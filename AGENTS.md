@@ -71,10 +71,6 @@ npm run check-types   # Type checking (tsc --noEmit)
 `npm run check-types` needs the `PageProps` global that `next build` generates
 into `.next/types/`, so run a build first on a fresh checkout.
 
-Known failure: `npm run lint` reports React-compiler errors in
-`src/components/charts/**` (refs read during render, setState in an effect).
-These came in with the upstream import and are not yet fixed.
-
 ## Deployment
 
 Render web service, described by `render.yaml` (`npm ci --include=dev &&
