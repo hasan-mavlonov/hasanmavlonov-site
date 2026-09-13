@@ -5,7 +5,6 @@ import {
 } from "@/features/portfolio/components/panel"
 import { PanelTitleCopy } from "@/features/portfolio/components/panel-title-copy"
 import { EDUCATION } from "@/features/portfolio/data/education"
-import type { Education } from "@/features/portfolio/types/education"
 
 import { EducationItem } from "./education-item"
 
@@ -22,13 +21,7 @@ export function Education() {
       </PanelHeader>
 
       {EDUCATION.map((item) => (
-        <div
-          key={item.id}
-          id={`education-${item.id}`}
-          className="screen-line-bottom scroll-mt-14 p-4 pr-2"
-        >
-          <EducationItem key={item.id} item={item} />
-        </div>
+        <EducationItem key={item.id} item={item} />
       ))}
     </Panel>
   )

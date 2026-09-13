@@ -602,6 +602,32 @@
   }
 }
 
+/* Entry bodies: one paragraph then em-dash bullets, capped at a readable measure. */
+.typeset-body {
+  --typeset-size: 15.5px;
+  --typeset-leading: 1.65;
+  --typeset-flow: 0.75em;
+
+  max-width: 68ch;
+  font-size: var(--typeset-size);
+  color: var(--color-muted-foreground);
+
+  & :where(ul) {
+    list-style: none;
+    padding-inline-start: 0;
+  }
+
+  & :where(ul > li) {
+    padding-inline-start: 1.4em;
+    text-indent: -1.4em;
+  }
+
+  & :where(ul > li)::before {
+    content: "— ";
+    color: var(--color-muted-foreground);
+  }
+}
+
 .typeset-description {
   --typeset-size: 15.5px;
   --typeset-leading: 1.65;
