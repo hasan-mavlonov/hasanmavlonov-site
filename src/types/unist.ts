@@ -8,7 +8,7 @@ export interface UnistNode extends Node {
   properties?: {
     __rawString__?: string
     [key: string]: unknown
-  } & NpmCommands
+  }
   attributes?: {
     name: string
     value: unknown
@@ -20,11 +20,4 @@ export interface UnistNode extends Node {
 
 export interface UnistTree extends Node {
   children: UnistNode[]
-}
-
-export interface NpmCommands {
-  __pnpm__?: string
-  __yarn__?: string
-  __npm__?: string
-  __bun__?: string
 }

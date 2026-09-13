@@ -6,22 +6,26 @@ This guide provides instructions on how to set up and run the project locally.
 
 Ensure you have the following installed:
 
-- [Node.js](https://nodejs.org/) (Latest LTS version recommended)
-- [pnpm](https://pnpm.io/)
+- [Node.js](https://nodejs.org/) (the version in `.nvmrc`)
 - [Git](https://git-scm.com/)
+
+npm is the only supported package manager here. `.npmrc` sets
+`legacy-peer-deps`, because fumadocs-core declares an optional peer on zod 4
+while this app pins zod 3 for its own schemas.
 
 ## Setup
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/ncdai/chanhdai.com.git minimal-dev-portfolio
-cd minimal-dev-portfolio
+git clone https://github.com/hasan-mavlonov/hasanmavlonov-site.git
+cd hasanmavlonov-site
 ```
 
-### 2. Install portless
+### 2. Install portless (optional)
 
-Documentation: [port1355.dev](https://port1355.dev)
+Serves the dev server over HTTPS at a `.localhost` domain, which keeps absolute
+URLs looking like production. Documentation: [port1355.dev](https://port1355.dev)
 
 ```bash
 npm install -g portless
@@ -30,10 +34,10 @@ npm install -g portless
 ### 3. Install dependencies
 
 ```bash
-pnpm i
+npm install
 ```
 
-### 4. Configure Environment Variables
+### 4. Configure environment variables
 
 Create a `.env.local` file based on `.env.example`:
 
@@ -41,73 +45,63 @@ Create a `.env.local` file based on `.env.example`:
 cp .env.example .env.local
 ```
 
-Then, update the necessary environment variables inside `.env.local`.
+Then update the necessary environment variables inside `.env.local`. Every one
+of them is optional: without them the site runs, and the features that need
+credentials (analytics, the insights page, GitHub stars, blog feedback) fall
+back to an empty state.
 
 ### 5. Run the development server
 
 ```bash
-pnpm dev
+npm run dev
 ```
 
-The application should now be available at https://ncdai.localhost
+The application is available at http://localhost:3000, or at
+https://hasanmavlonov.localhost with portless running (see `allowedDevOrigins`
+in `next.config.ts`).
 
-## Building for Production
+## Building for production
 
 ```bash
-pnpm build
+npm run build
+npm start
 ```
 
-After building, start the application with:
-
-```bash
-NODE_ENV=production pnpm start
-```
+`npm start` honours the `PORT` environment variable, which is how Render runs
+it.
 
 ## Before pushing
 
-CI runs these on every push and PR. Run them locally first:
+CI runs these on every pull request. Run them locally first:
 
 ```bash
-pnpm lint
-pnpm format:check
-pnpm build
-pnpm check-types
-pnpm registry:validate
+npm run lint
+npm run format:check
+npm run build
+npm run check-types
 ```
 
-## Registry
+Run `npm run build` before `npm run check-types` on a fresh checkout: the
+typecheck depends on the `PageProps` global that `next build` generates into
+`.next/types/`.
 
-This project utilizes **shadcn Registry**, which allows you to manage and distribute custom components, hooks, pages, and other files across multiple React projects. By hosting a registry, you can reuse UI components easily without manually copying code between projects.
+Known failure: `npm run lint` reports React-compiler errors in
+`src/components/charts/**` (refs read during render, setState in an effect).
+They arrived with the upstream import and are not yet fixed.
 
-### Using registry in other React projects
+## Content
 
-If you're working on a different React project and want to reuse the custom components from this repository, visit [chanhdai.com/components](https://chanhdai.com/components) for installation instructions and component documentation.
+Portfolio sections read from `src/features/portfolio/data/`. Blog posts are MDX
+files in `src/features/doc/content/blog/`.
 
-> Note: These components are compatible with [Tailwind CSS v4](https://tailwindcss.com/blog/tailwindcss-v4) and [React 19](https://react.dev/blog/2024/12/05/react-19).
+## Deployment
 
-### Registry configuration
+Render web service, described by `render.yaml`:
 
-Documentation: [shadcn registry docs](https://ui.shadcn.com/docs/registry)
+- Build: `npm ci --include=dev && npm run build`
+- Start: `npm start`
+- `NEXT_PUBLIC_APP_URL` must be set at build time, since it is inlined into the
+  client bundle and used for canonical URLs, the sitemap and Open Graph images
 
-Source files:
-
-- `./src/registry`
-
-Before using the registry, run the following command to build and generate the registry JSON files:
-
-```bash
-pnpm registry:build
-```
-
-When running the `npx shadcn add <registry-url>` command, the selected component will be automatically downloaded and integrated into your project.
-
-## Screenshots
-
-The site screenshots are captured locally, then published to Cloudflare R2.
-
-```bash
-pnpm capture       # Capture screenshots into .ncdai/screenshots
-pnpm capture:sync  # Upload the folder to Cloudflare R2
-```
-
-`pnpm capture:sync` requires the `R2_*` variables from `.env.example`. It mirrors the local folder structure into the bucket (skipping dotfiles), overwriting existing files but never deleting remote ones.
+Dev dependencies are needed to build, so do not set `NODE_ENV=production` on
+the build step.

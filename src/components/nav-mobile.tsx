@@ -6,6 +6,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 import type { NavItem } from "@/types/nav"
+import { haptic } from "@/lib/haptic"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { Button } from "@/components/base/ui/button"
 import {
@@ -13,7 +14,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/base/ui/popover"
-import { haptic } from "@/registry/lib/haptic"
 
 export function NavMobile({ items }: { items: NavItem<Route>[] }) {
   const [open, setOpen] = useState(false)

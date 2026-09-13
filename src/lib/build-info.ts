@@ -4,9 +4,13 @@ import { USER } from "@/features/portfolio/data/user"
 import packageJson from "../../package.json"
 
 /**
- * Reads the Vercel deployment environment variables, which are server-side
- * only — do not import this from a client component. Set them in `.env.local`
+ * Reads the host's deployment environment variables, which are server-side
+ * only - do not import this from a client component. Set them in `.env.local`
  * to exercise the non-development rendering.
+ *
+ * Render exposes RENDER_GIT_COMMIT and IS_PULL_REQUEST; the VERCEL_* names are
+ * kept as a fallback so the footer still reports correctly if this is deployed
+ * there instead.
  */
 
 const SHORT_SHA_LENGTH = 7
@@ -38,14 +42,22 @@ const BUILD_DATE = dateFormatter.format(
 
 function resolveEnvironment(): BuildEnvironment {
   const vercelEnv = process.env.VERCEL_ENV
-  return vercelEnv === "production" || vercelEnv === "preview"
-    ? vercelEnv
-    : "development"
+  if (vercelEnv === "production" || vercelEnv === "preview") {
+    return vercelEnv
+  }
+
+  if (process.env.RENDER === "true") {
+    // Render builds pull request previews with IS_PULL_REQUEST set.
+    return process.env.IS_PULL_REQUEST === "true" ? "preview" : "production"
+  }
+
+  return "development"
 }
 
 export function getBuildInfo(): BuildInfo {
   const environment = resolveEnvironment()
-  const commitSha = process.env.VERCEL_GIT_COMMIT_SHA
+  const commitSha =
+    process.env.RENDER_GIT_COMMIT ?? process.env.VERCEL_GIT_COMMIT_SHA
 
   return {
     commitShortSha: commitSha?.slice(0, SHORT_SHA_LENGTH) ?? null,

@@ -7,7 +7,6 @@ import { trackEvent } from "@/lib/events"
 import { cn } from "@/lib/utils"
 import type { VolumeIconHandle } from "@/components/animated-icons/volume-icon"
 import { VolumeIcon } from "@/components/animated-icons/volume-icon"
-import { useSound } from "@/registry/hooks/sound/use-sound"
 
 export function PronounceMyName({
   className,
@@ -16,13 +15,16 @@ export function PronounceMyName({
   className?: string
   namePronunciationUrl: string
 }) {
-  const [play] = useSound(namePronunciationUrl)
-
   const volumeIconRef = useRef<VolumeIconHandle>(null)
+  const audioRef = useRef<HTMLAudioElement | null>(null)
 
   const handlePlayClick = () => {
     volumeIconRef.current?.startAnimation()
-    play()
+
+    audioRef.current ??= new Audio(namePronunciationUrl)
+    audioRef.current.currentTime = 0
+    // Autoplay policies can reject playback; the icon animation still runs.
+    void audioRef.current.play().catch(() => {})
     trackEvent({
       name: "play_name_pronunciation",
     })
