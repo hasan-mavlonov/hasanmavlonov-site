@@ -66,6 +66,7 @@
     "date-fns": "^4.1.0",
     "dialkit": "^1.1.0",
     "fumadocs-core": "^16.10.5",
+    "geist": "^1.7.0",
     "hast-util-to-jsx-runtime": "^2.3.6",
     "jotai": "^2.18.1",
     "libphonenumber-js": "^1.12.4",

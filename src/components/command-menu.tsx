@@ -25,9 +25,7 @@ import { useTheme } from "next-themes"
 import { useHotkeys } from "react-hotkeys-hook"
 import { toast } from "sonner"
 
-import { META_THEME_COLORS } from "@/config/site"
 import { trackEvent } from "@/lib/events"
-import { useMetaColor } from "@/hooks/use-meta-color"
 import { useMutationObserver } from "@/hooks/use-mutation-observer"
 import {
   CommandDialog,
@@ -170,7 +168,6 @@ export function CommandMenu({
   const router = useRouter()
 
   const { setTheme } = useTheme()
-  const { setMetaColor } = useMetaColor()
 
   const [open, setOpen] = useState(false)
 
@@ -251,16 +248,8 @@ export function CommandMenu({
       })
 
       setTheme(theme)
-
-      const resolvesDark =
-        theme === "dark" ||
-        (theme === "system" &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      setMetaColor(
-        resolvesDark ? META_THEME_COLORS.dark : META_THEME_COLORS.light
-      )
     },
-    [setTheme, setMetaColor]
+    [setTheme]
   )
 
   const blogLinks = useMemo(

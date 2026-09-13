@@ -10,10 +10,8 @@ export type User = {
   /** e.g. "he/him", "she/her", "they/them" */
   pronouns?: string
   bio: string
-  /** One-line thesis under the name in the hero, set in the display face. */
-  statement: string
-  /** Supporting sentence under the statement. */
-  subtitle: string
+  /** Short phrases rotated in UI (e.g., homepage flip effect) */
+  flipSentences: string[]
   /** General location for display */
   address: string
   /** E.164 format, base64 encoded. Omit to hide the phone row. */
@@ -36,8 +34,6 @@ export type User = {
   about: string
   /** Public URL or /public path to the avatar image */
   avatar: string
-  /** Portrait for the hero; omit to show initials. */
-  photo?: string
   /** Open Graph image URL for social sharing */
   ogImage: string
   /** Audio URL for name pronunciation. Omit to hide the play button. */
