@@ -12,6 +12,8 @@ export type User = {
   bio: string
   /** Short phrases rotated in UI (e.g., homepage flip effect) */
   flipSentences: string[]
+  /** Personal-brand adjectives, rendered as a ticker in the hero */
+  traits: string[]
   /** General location for display */
   address: string
   /** E.164 format, base64 encoded. Omit to hide the phone row. */

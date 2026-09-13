@@ -18,6 +18,7 @@ import {
 } from "@/features/portfolio/components/insights"
 import { ProfileHeader } from "@/features/portfolio/components/profile-header"
 import { Projects } from "@/features/portfolio/components/projects"
+import { TraitsMarquee } from "@/features/portfolio/components/traits-marquee"
 import { USER } from "@/features/portfolio/data/user"
 
 export const metadata: Metadata = {
@@ -37,6 +38,7 @@ export default function HomePage() {
       <div className="[--separator-height:--spacing(8)] **:data-[slot=panel]:scroll-mt-[calc(var(--header-height)+var(--separator-height))]">
         <div className="mx-auto md:max-w-3xl">
           <ProfileHeader />
+          <TraitsMarquee />
           <Separator />
 
           <Contact />

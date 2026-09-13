@@ -19,7 +19,7 @@ export const LICENSE = {
 
 export const META_THEME_COLORS = {
   light: "#ffffff",
-  dark: "#09090b",
+  dark: "#020617",
 }
 
 export const MAIN_NAV: NavItem<Route>[] = [
