@@ -36,9 +36,10 @@ export const USER: User = {
   about: `- I'm Hasan, CTO and co-founder of [MindForm AI](#experience-mindform-ai). We build StableMind: a persistence layer that gives an AI agent a measurable Big Five personality that survives across sessions, models and restarts.
 - I'm also CTO at [Defex](https://defex.app), where self-teaching robots attempt an assembly, physically test the joint and learn from the result. Backed by NVIDIA Inception, Google for Startups and Z Fellows.
 - Author of the [StableMind preprint](https://doi.org/10.5281/zenodo.20593641), endorsed for arXiv submission, with a live demo on [Hugging Face](https://huggingface.co/spaces/hasanmavlonov/stablemind).
-- Studying Artificial Intelligence at East China University of Science and Technology in Shanghai. Before this I shipped backends: Django, FastAPI, PostgreSQL, and one RFID inventory system that cut label printing hardware cost by about 97%.
+- Studying Artificial Intelligence at East China University of Science and Technology in Shanghai.
 `,
   avatar: "/monogram.svg",
+  photo: "/hasan-mavlonov.jpg",
   ogImage:
     "/og/simple?title=Hasan%20Mavlonov&description=CTO%20%26%20Co-founder%2C%20MindForm%20AI",
   keywords: [

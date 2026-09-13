@@ -1,4 +1,4 @@
-import { BrainIcon, LandmarkIcon, ScanBarcodeIcon } from "lucide-react"
+import { BrainIcon, LandmarkIcon } from "lucide-react"
 
 import type { Project } from "../types/projects"
 
@@ -28,17 +28,5 @@ export const PROJECTS: Project[] = [
     skills: ["Simulation", "Interactive education"],
     description: `An interactive system that reconstructs ancient engineering and construction logic. Recognized in the 2026 Shanghai University Computer Application Competition.`,
     icon: <LandmarkIcon />,
-  },
-  {
-    id: "tracky",
-    title: "Tracky",
-    period: {
-      start: "05.2025",
-      end: "09.2025",
-    },
-    link: "https://github.com/hasan-mavlonov",
-    skills: ["Django", "PostgreSQL", "RFID"],
-    description: `A real-time RFID inventory and point-of-sale backend. Cut label printing hardware cost by about 97% by mapping barcodes to RFID codes at print time, so cheap thermal printers replaced industrial RFID printers.`,
-    icon: <ScanBarcodeIcon />,
   },
 ]

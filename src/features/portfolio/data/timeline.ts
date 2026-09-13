@@ -10,8 +10,6 @@ export const TIMELINE_MILESTONES: TimelineMilestone[] = [
     year: 2024,
     content: `Interdisciplinary STEAM coursework at the University of Wisconsin-Madison.
 
-Built a Yandex Eats style backend on Django, FastAPI and PostgreSQL as an open source replica.
-
 Ranked 8th of 4,000 participants in the RUCODE programming contest.
 
 Scored 1490 on the SAT (Math 790, English 700).`,
@@ -20,13 +18,11 @@ Scored 1490 on the SAT (Math 790, English 700).`,
     year: 2025,
     content: `Started a B.Sc. in Artificial Intelligence at East China University of Science and Technology, in Shanghai, and became class leader for the AI major.
 
-Built Tracky, a real-time RFID inventory and POS backend, cutting label printing hardware cost by roughly 97%.
-
 Joined Elev8 in Shanghai as an AI engineer intern, working on Stable Diffusion XL training pipelines.
 
 Completed Machine Learning and Neural Networks at the University of Cambridge, building an EfficientNetB0 classifier for breast cancer histopathology images.
 
-Won a 50,000 RUB Yandex Cloud award for a research proposal, and passed Yandex's backend internship algorithm interviews.
+Won a 50,000 RUB Yandex Cloud award for a research proposal.
 
 Mentored 250+ developers at Google DevFest '25 and Build With AI '25 in Shanghai.`,
   },

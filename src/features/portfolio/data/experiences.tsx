@@ -62,22 +62,4 @@ export const EXPERIENCES: Experience[] = [
       },
     ],
   },
-  {
-    id: "tracky",
-    companyName: "Tracky",
-    location: "Tashkent, Uzbekistan",
-    positions: [
-      {
-        id: "tracky-backend-developer",
-        title: "Backend Developer",
-        employmentPeriod: {
-          start: "05.2025",
-          end: "09.2025",
-        },
-        icon: <CodeXmlIcon />,
-        description: `Built a real-time RFID inventory and point-of-sale backend, and cut label printing hardware cost by about 97% by mapping barcodes to RFID codes at print time.`,
-        skills: ["Django", "PostgreSQL", "RFID"],
-      },
-    ],
-  },
 ]
