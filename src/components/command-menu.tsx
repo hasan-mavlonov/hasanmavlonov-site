@@ -7,18 +7,17 @@ import { useTiks } from "@rexa-developer/tiks/react"
 import {
   BoxIcon,
   BriefcaseBusinessIcon,
-  CircleCheckBigIcon,
   CornerDownLeftIcon,
   CrownIcon,
   DownloadIcon,
   FileTextIcon,
   GraduationCapIcon,
+  LanguagesIcon,
   LayersIcon,
   LineChartIcon,
   MonitorIcon,
   MoonStarIcon,
   RssIcon,
-  ScaleIcon,
   SunMediumIcon,
   TextInitialIcon,
 } from "lucide-react"
@@ -111,6 +110,12 @@ const PORTFOLIO_LINKS: CommandLinkItem[] = [
     icon: <GraduationCapIcon />,
   },
   {
+    title: "Languages",
+    href: "/#languages",
+    kind: "page",
+    icon: <LanguagesIcon />,
+  },
+  {
     title: "Projects",
     href: "/#projects",
     kind: "page",
@@ -121,18 +126,6 @@ const PORTFOLIO_LINKS: CommandLinkItem[] = [
     href: "/#awards",
     kind: "page",
     icon: <CrownIcon />,
-  },
-  {
-    title: "Certifications",
-    href: "/#certs",
-    kind: "page",
-    icon: <CircleCheckBigIcon />,
-  },
-  {
-    title: "Intellectual property",
-    href: "/#ip",
-    kind: "page",
-    icon: <ScaleIcon />,
   },
 ]
 

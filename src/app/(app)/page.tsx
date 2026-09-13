@@ -15,6 +15,7 @@ import {
   Insights,
   InsightsSkeleton,
 } from "@/features/portfolio/components/insights"
+import { Languages } from "@/features/portfolio/components/languages"
 import { Overview } from "@/features/portfolio/components/overview"
 import { ProfileHeader } from "@/features/portfolio/components/profile-header"
 import { Projects } from "@/features/portfolio/components/projects"
@@ -62,6 +63,9 @@ export default function HomePage() {
           <Separator />
 
           <Education />
+          <Separator />
+
+          <Languages />
           <Separator />
 
           <Projects />
