@@ -5,7 +5,7 @@ import type { BuildInfo } from "@/lib/build-info"
 import { getBuildInfo, getStack } from "@/lib/build-info"
 import { cn } from "@/lib/utils"
 import { Separator } from "@/components/base/ui/separator"
-import { DmcaIcon, GitHubIcon, LinkedInIcon } from "@/components/icons"
+import { DmcaIcon, GitHubIcon, XIcon } from "@/components/icons"
 import { SiteFooterInteractiveLogotype } from "@/components/site-footer-brand"
 import { SOCIAL } from "@/features/portfolio/data/social-links"
 
@@ -28,7 +28,7 @@ const SITE_SUBTITLE = packageJson.description
 /** Footer laid out as the title block of a technical drawing. */
 export function SiteFooterCad() {
   const githubLink = SOCIAL.github
-  const linkedinLink = SOCIAL.linkedin
+  const xLink = SOCIAL.x
 
   const build = getBuildInfo()
   const stack = getStack()
@@ -172,12 +172,12 @@ export function SiteFooterCad() {
 
           <a
             className="flex items-center transition-[color] hover:text-foreground"
-            href={linkedinLink.href}
+            href={xLink.href}
             target="_blank"
             rel="noopener"
-            aria-label="LinkedIn Profile"
+            aria-label="X Profile"
           >
-            <LinkedInIcon className="size-4" />
+            <XIcon className="size-4" />
           </a>
 
           <Separator
