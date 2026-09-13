@@ -8,7 +8,7 @@ export const USER: User = {
   bio: "CTO and co-founder building persistent personality and identity infrastructure for AI agents.",
   flipSentences: [
     "CTO and co-founder, MindForm AI.",
-    "I build persistent identity for AI agents.",
+    "Trying to integrate personality into AI.",
     "CTO at Defex, self-teaching assembly robots.",
     "B.Sc. in Artificial Intelligence at ECUST.",
   ],
