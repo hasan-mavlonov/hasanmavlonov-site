@@ -92,6 +92,24 @@
   --color-chart-2: var(--chart-2);
   --color-chart-1: var(--chart-1);
 
+  --color-signature: var(--signature);
+
+  --animate-signature-draw: signature-draw
+    var(--tw-animation-duration, var(--tw-duration, 1.6s))
+    cubic-bezier(0.65, 0.02, 0.35, 1) 0.25s both;
+
+  /* Reveals the script left to right, the way it would be written. The
+     negative vertical inset keeps Caveat's ascenders and tails out of the
+     clip. */
+  @keyframes signature-draw {
+    from {
+      clip-path: inset(-30% 100% -30% -4%);
+    }
+    to {
+      clip-path: inset(-30% -4% -30% -4%);
+    }
+  }
+
   --animate-spin-ccw: spin-ccw
     var(--tw-animation-duration, var(--tw-duration, 6s)) linear infinite;
 
@@ -294,6 +312,9 @@
   /* zinc-400 */
   --ring: oklch(0.705 0.015 286.067);
 
+  /* #c8102e */
+  --signature: oklch(0.53 0.225 22);
+
   --info: oklch(0.67 0.17 244.98);
 
   /* green-500 */
@@ -440,6 +461,9 @@
   --ring: oklch(0.552 0.016 285.938);
 
   /* green-500 */
+  /* Lifted off #c8102e so the script still reads on the dark ground. */
+  --signature: oklch(0.68 0.21 20);
+
   --success: oklch(0.723 0.219 149.579);
 
   /* red-700 */
