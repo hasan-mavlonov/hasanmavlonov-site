@@ -34,6 +34,8 @@ export type User = {
   about: string
   /** Public URL or /public path to the avatar image */
   avatar: string
+  /** Portrait for the header disc. Omit to fall back to the initials. */
+  photo?: string
   /** Open Graph image URL for social sharing */
   ogImage: string
   /** Audio URL for name pronunciation. Omit to hide the play button. */
