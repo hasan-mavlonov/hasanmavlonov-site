@@ -12,27 +12,12 @@ export const AWARDS: Award[] = [
     description: "- Completed and ranked 8th out of 4,000 participants.",
   },
   {
-    id: "sat-1490",
-    prize: "1490",
-    title: "SAT",
-    date: "2024",
-    grade: "Standardized test",
-    description: "- Math 790, English 700.",
-  },
-  {
     id: "yandex-cloud-research-proposal",
     prize: "50,000 RUB",
     title: "Yandex Cloud research proposal award",
     date: "2025",
     grade: "Research",
     description: "- Awarded by Yandex Cloud for a research proposal.",
-  },
-  {
-    id: "yandex-backend-internship-interviews",
-    prize: "Passed",
-    title: "Yandex backend development internship algorithm interviews",
-    date: "2025",
-    grade: "Technical interviews",
   },
   {
     id: "google-devfest-mentoring",
