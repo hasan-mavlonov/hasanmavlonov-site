@@ -28,6 +28,8 @@
       "purpose": "maskable"
     }
   ],
+  "theme_color": "#070c14",
+  "background_color": "#070c14",
   "id": "/?utm_source=pwa",
   "start_url": "/?utm_source=pwa",
   "display": "standalone",

@@ -6,7 +6,6 @@ import {
   PageHeadingTagline,
   PageHeadingTitle,
 } from "@/components/page-heading"
-import { TimescaleIntroScroll } from "@/components/timescale"
 import { Timeline } from "@/features/portfolio/components/timeline"
 
 const title = "Timeline"
@@ -59,10 +58,7 @@ export default function TimelinePage() {
 
       <div className="h-4" />
       <div className="screen-line-top h-3" />
-
-      <TimescaleIntroScroll>
-        <Timeline orientation="horizontal" className="hidden md:flex" />
-      </TimescaleIntroScroll>
+      <Timeline orientation="horizontal" className="hidden md:flex" />
 
       <Timeline orientation="vertical" className="px-4 md:hidden" />
 

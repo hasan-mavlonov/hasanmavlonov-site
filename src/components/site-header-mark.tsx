@@ -1,52 +1,44 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
-import { useMotionValueEvent, useScroll } from "motion/react"
 
 import { BrandMark } from "./brand-mark"
 
-const calcDistance = (el: HTMLElement) => {
-  const rect = el.getBoundingClientRect()
-  const scrollTop = document.documentElement.scrollTop
-  const headerHeight = 56
-  return scrollTop + rect.top + rect.height - headerHeight
-}
+const SWAP_AT_PX = 120
 
-function BrandMarkMotion() {
-  const { scrollY } = useScroll()
-  const [visible, setVisible] = useState(false)
-  const distanceRef = useRef(160)
-
-  useMotionValueEvent(scrollY, "change", (latestValue) => {
-    setVisible(latestValue >= distanceRef.current)
-  })
+/**
+ * "HM" in the header until the page has scrolled 120px, then the full name.
+ * Opacity only, 140ms, no translate: the swap is a state change, not a
+ * flourish. Off the home page the name shows from the start.
+ */
+export function SiteHeaderMark({ name }: { name: string }) {
+  const pathname = usePathname()
+  const isHome = pathname === "/" || pathname === "/index"
+  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    const coverMark = document.getElementById("js-cover-mark")
-    if (!coverMark) return
+    if (!isHome) return
+    const onScroll = () => setScrolled(window.scrollY >= SWAP_AT_PX)
+    onScroll()
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [isHome])
 
-    distanceRef.current = calcDistance(coverMark)
-
-    const resizeObserver = new ResizeObserver(() => {
-      distanceRef.current = calcDistance(coverMark)
-    })
-    resizeObserver.observe(coverMark)
-
-    return () => {
-      resizeObserver.disconnect()
-    }
-  }, [])
+  const showName = !isHome || scrolled
 
   return (
-    <div data-visible={visible} className="group/mark-motion flex">
-      <BrandMark className="-translate-y-1 opacity-0 transition-[opacity,translate] duration-300 group-data-[visible=true]/mark-motion:translate-y-0 group-data-[visible=true]/mark-motion:opacity-100" />
-    </div>
+    <span className="relative flex h-6 items-center" data-name={showName}>
+      <BrandMark
+        className={`h-6 shrink-0 transition-opacity duration-[140ms] motion-reduce:transition-none ${showName ? "opacity-0" : "opacity-100"}`}
+        aria-hidden
+      />
+      <span
+        className={`absolute inset-y-0 left-0 flex items-center font-display text-base font-semibold tracking-tight whitespace-nowrap transition-opacity duration-[140ms] motion-reduce:transition-none ${showName ? "opacity-100" : "opacity-0"}`}
+        aria-hidden={!showName}
+      >
+        {name}
+      </span>
+    </span>
   )
-}
-
-export function SiteHeaderMark() {
-  const pathname = usePathname()
-  const isHome = ["/", "/index"].includes(pathname)
-  return isHome ? <BrandMarkMotion /> : <BrandMark />
 }

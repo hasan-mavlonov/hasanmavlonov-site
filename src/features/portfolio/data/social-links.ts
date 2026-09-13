@@ -12,17 +12,22 @@ export const SOCIAL = {
     href: "https://github.com/hasan-mavlonov",
     sameAs: true,
   },
-  linkedin: {
-    title: "LinkedIn",
+  x: {
+    title: "X",
+    handle: "@HasanMavlonovX",
+    href: "https://x.com/HasanMavlonovX",
+    sameAs: true,
+  },
+  huggingface: {
+    title: "Hugging Face",
     handle: "hasanmavlonov",
-    href: "https://linkedin.com/in/hasanmavlonov",
+    href: "https://huggingface.co/spaces/hasanmavlonov/stablemind",
     sameAs: true,
   },
   leetcode: {
     title: "LeetCode",
     handle: "hasanmavlonov",
     href: "https://leetcode.com/u/hasanmavlonov",
-    sameAs: true,
   },
 } satisfies Record<string, SocialProfile>
 

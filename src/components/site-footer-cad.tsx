@@ -5,7 +5,7 @@ import type { BuildInfo } from "@/lib/build-info"
 import { getBuildInfo, getStack } from "@/lib/build-info"
 import { cn } from "@/lib/utils"
 import { Separator } from "@/components/base/ui/separator"
-import { DmcaIcon, GitHubIcon, LinkedInIcon } from "@/components/icons"
+import { DmcaIcon, GitHubIcon, XIcon } from "@/components/icons"
 import { SiteFooterInteractiveLogotype } from "@/components/site-footer-brand"
 import { SOCIAL } from "@/features/portfolio/data/social-links"
 
@@ -28,14 +28,14 @@ const SITE_SUBTITLE = packageJson.description
 /** Footer laid out as the title block of a technical drawing. */
 export function SiteFooterCad() {
   const githubLink = SOCIAL.github
-  const linkedinLink = SOCIAL.linkedin
+  const xLink = SOCIAL.x
 
   const build = getBuildInfo()
   const stack = getStack()
 
   return (
     <footer className="max-w-screen overflow-x-clip px-2">
-      <div className="mx-auto border-x group-has-data-[slot=layout-wide]/layout:container md:max-w-3xl">
+      <div className="mx-auto max-w-(--container-site) border-x">
         <div className="screen-line-top screen-line-bottom screen-line-top-border before:z-1">
           <div className="stripe-divider h-12" />
         </div>
@@ -92,7 +92,9 @@ export function SiteFooterCad() {
               </a>
             </Field>
 
-            <Field label="Typeface">Geist</Field>
+            <Field label="Typeface">
+              Archivo, IBM Plex Sans, IBM Plex Mono
+            </Field>
 
             <Field className="col-span-2" label="Stack">
               <ul className="flex flex-col gap-0.5">
@@ -170,12 +172,12 @@ export function SiteFooterCad() {
 
           <a
             className="flex items-center transition-[color] hover:text-foreground"
-            href={linkedinLink.href}
+            href={xLink.href}
             target="_blank"
             rel="noopener"
-            aria-label="LinkedIn Profile"
+            aria-label="X Profile"
           >
-            <LinkedInIcon className="size-4" />
+            <XIcon className="size-4" />
           </a>
 
           <Separator

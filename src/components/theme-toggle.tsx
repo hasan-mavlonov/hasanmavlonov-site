@@ -1,13 +1,12 @@
 "use client"
 
+import { MoonIcon, SunMediumIcon } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useHotkeys } from "react-hotkeys-hook"
 
 import { META_THEME_COLORS } from "@/config/site"
 import { useMetaColor } from "@/hooks/use-meta-color"
 
-import { MoonIcon } from "./animated-icons/moon-icon"
-import { SunMediumIcon } from "./animated-icons/sun-medium-icon"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./base/ui/tooltip"
 import { Button } from "./ui/button"
 import { Kbd } from "./ui/kbd"

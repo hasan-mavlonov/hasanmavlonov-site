@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { useCallback, useEffect, useId, useRef, useState } from "react"
 import { curveNatural } from "@visx/curve"
 import { LinePath } from "@visx/shape"
 import { motion, useMotionTemplate, useSpring } from "motion/react"
@@ -30,6 +30,27 @@ export interface LineProps {
   showHighlight?: boolean
 }
 
+// Binary search for the path length at a given X coordinate
+function lengthAtX(
+  path: SVGPathElement,
+  pathLength: number,
+  targetX: number
+): number {
+  let low = 0
+  let high = pathLength
+  const tolerance = 0.5
+
+  while (high - low > tolerance) {
+    const mid = (low + high) / 2
+    if (path.getPointAtLength(mid).x < targetX) {
+      low = mid
+    } else {
+      high = mid
+    }
+  }
+  return (low + high) / 2
+}
+
 export function Line({
   dataKey,
   stroke = chartCssVars.linePrimary,
@@ -54,113 +75,73 @@ export function Line({
   } = useChart()
 
   const pathRef = useRef<SVGPathElement>(null)
+  // The highlight segment is drawn from the rendered path, so its length and
+  // "d" attribute are captured after layout rather than read off the ref
+  // during render.
   const [pathLength, setPathLength] = useState(0)
+  const [pathD, setPathD] = useState("")
 
-  // Unique gradient ID for this line
-  const gradientId = useMemo(
-    () => `line-gradient-${dataKey}-${Math.random().toString(36).slice(2, 9)}`,
-    [dataKey]
-  )
+  const gradientId = `line-gradient-${dataKey}-${useId().replace(/[^\w-]/g, "")}`
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: data, innerWidth
   useEffect(() => {
-    if (pathRef.current && animate) {
-      const len = pathRef.current.getTotalLength()
-      if (len > 0) {
-        setPathLength(len)
-      }
+    const path = pathRef.current
+    if (!path) {
+      return
     }
-  }, [animate, data, innerWidth])
-
-  // Binary search to find path length at a given X coordinate
-  const findLengthAtX = useCallback(
-    (targetX: number): number => {
-      const path = pathRef.current
-      if (!path || pathLength === 0) {
-        return 0
-      }
-      let low = 0
-      let high = pathLength
-      const tolerance = 0.5
-
-      while (high - low > tolerance) {
-        const mid = (low + high) / 2
-        const point = path.getPointAtLength(mid)
-        if (point.x < targetX) {
-          low = mid
-        } else {
-          high = mid
-        }
-      }
-      return (low + high) / 2
-    },
-    [pathLength]
-  )
-
-  // Calculate segment bounds for highlight from either selection or hover
-  const segmentBounds = useMemo(() => {
-    if (!pathRef.current || pathLength === 0) {
-      return { startLength: 0, segmentLength: 0, isActive: false }
+    const len = path.getTotalLength()
+    if (len > 0) {
+      setPathLength(len)
+      setPathD(path.getAttribute("d") ?? "")
     }
-
-    // Selection takes priority over hover
-    if (selection?.active) {
-      const startLength = findLengthAtX(selection.startX)
-      const endLength = findLengthAtX(selection.endX)
-      return {
-        startLength,
-        segmentLength: endLength - startLength,
-        isActive: true,
-      }
-    }
-
-    if (!tooltipData) {
-      return { startLength: 0, segmentLength: 0, isActive: false }
-    }
-
-    const idx = tooltipData.index
-    const startIdx = Math.max(0, idx - 1)
-    const endIdx = Math.min(data.length - 1, idx + 1)
-
-    const startPoint = data[startIdx]
-    const endPoint = data[endIdx]
-    if (!(startPoint && endPoint)) {
-      return { startLength: 0, segmentLength: 0, isActive: false }
-    }
-
-    const startX = xScale(xAccessor(startPoint)) ?? 0
-    const endX = xScale(xAccessor(endPoint)) ?? 0
-
-    const startLength = findLengthAtX(startX)
-    const endLength = findLengthAtX(endX)
-
-    return {
-      startLength,
-      segmentLength: endLength - startLength,
-      isActive: true,
-    }
-  }, [
-    tooltipData,
-    selection,
-    data,
-    xScale,
-    pathLength,
-    xAccessor,
-    findLengthAtX,
-  ])
+  }, [data, innerWidth, innerHeight])
 
   // Springs for smooth highlight animation (both offset AND segment length)
   const springConfig = { stiffness: 180, damping: 28 }
   const offsetSpring = useSpring(0, springConfig)
   const segmentLengthSpring = useSpring(0, springConfig)
 
-  // Update springs when segment bounds change
+  // Segment bounds come from DOM geometry, so they are computed in an effect
+  // and pushed straight into the springs instead of derived during render.
   useEffect(() => {
-    offsetSpring.set(-segmentBounds.startLength)
-    segmentLengthSpring.set(segmentBounds.segmentLength)
+    const path = pathRef.current
+    if (!path || pathLength === 0) {
+      return
+    }
+
+    let startX: number | null = null
+    let endX: number | null = null
+
+    // Selection takes priority over hover
+    if (selection?.active) {
+      startX = selection.startX
+      endX = selection.endX
+    } else if (tooltipData) {
+      const idx = tooltipData.index
+      const startPoint = data[Math.max(0, idx - 1)]
+      const endPoint = data[Math.min(data.length - 1, idx + 1)]
+      if (startPoint && endPoint) {
+        startX = xScale(xAccessor(startPoint)) ?? 0
+        endX = xScale(xAccessor(endPoint)) ?? 0
+      }
+    }
+
+    if (startX === null || endX === null) {
+      offsetSpring.set(0)
+      segmentLengthSpring.set(0)
+      return
+    }
+
+    const startLength = lengthAtX(path, pathLength, startX)
+    const endLength = lengthAtX(path, pathLength, endX)
+    offsetSpring.set(-startLength)
+    segmentLengthSpring.set(endLength - startLength)
   }, [
-    segmentBounds.startLength,
-    segmentBounds.segmentLength,
+    tooltipData,
+    selection,
+    data,
+    xScale,
+    xAccessor,
+    pathLength,
     offsetSpring,
     segmentLengthSpring,
   ])
@@ -230,10 +211,10 @@ export function Line({
       </g>
 
       {/* Highlight segment on hover */}
-      {showHighlight && isHovering && isLoaded && pathRef.current && (
+      {showHighlight && isHovering && isLoaded && pathD !== "" && (
         <motion.path
           animate={{ opacity: 1 }}
-          d={pathRef.current.getAttribute("d") || ""}
+          d={pathD}
           exit={{ opacity: 0 }}
           fill="none"
           initial={{ opacity: 0 }}

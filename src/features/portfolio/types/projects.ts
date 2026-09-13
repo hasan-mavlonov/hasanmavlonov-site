@@ -24,4 +24,12 @@ export type Project = {
   icon?: React.ReactElement
   /** Whether the project card is expanded by default in the UI. */
   isExpanded?: boolean
+  /** Who the project belongs to, shown as a mono caption under the name. */
+  owner?: string
+  /** Your role on it, shown as a bordered chip. */
+  role?: string
+  /** Status word for the index strip, e.g. "live", "shipped", "research". */
+  status?: string
+  /** Named actions; the first is primary. Defaults to a single "Open" on `link`. */
+  actions?: { label: string; href: string }[]
 }

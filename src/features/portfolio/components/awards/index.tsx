@@ -31,7 +31,7 @@ export function Awards() {
 
       <CollapsibleList
         items={SORTED_AWARDS}
-        max={6}
+        max={SORTED_AWARDS.length}
         keyExtractor={(item) => item.id}
         renderItem={(item) => <AwardItem award={item} />}
       />

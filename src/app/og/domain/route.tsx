@@ -4,12 +4,12 @@ import { ImageResponse } from "next/og"
 
 import { clampParam } from "../params"
 
-const geistMedium = readFileSync(
-  join(process.cwd(), "src/assets/fonts/Geist-Medium.ttf")
+const archivoSemiBold = readFileSync(
+  join(process.cwd(), "src/assets/fonts/Archivo-SemiBold.ttf")
 )
 
-const geistSemiBold = readFileSync(
-  join(process.cwd(), "src/assets/fonts/Geist-SemiBold.ttf")
+const archivoBold = readFileSync(
+  join(process.cwd(), "src/assets/fonts/Archivo-Bold.ttf")
 )
 
 export async function GET(request: Request) {
@@ -19,13 +19,13 @@ export async function GET(request: Request) {
   const isForSale = searchParams.get("sale") === "true"
 
   return new ImageResponse(
-    <div tw="flex text-black bg-white w-full h-full p-16">
-      <div tw="flex-1 flex flex-col justify-center border-l border-r border-zinc-200">
-        <div tw="flex justify-center border-t border-b border-zinc-200">
+    <div tw="flex text-[#0a1220] bg-[#f6f7f5] w-full h-full p-16">
+      <div tw="flex-1 flex flex-col justify-center border-l border-r border-[#dde3ea]">
+        <div tw="flex justify-center border-t border-b border-[#dde3ea]">
           <h1
             tw="mt-8 mb-4 ml-8 mr-8"
             style={{
-              fontFamily: "GeistSans",
+              fontFamily: "Archivo",
               fontWeight: 600,
               fontSize: 88,
               letterSpacing: "-0.025em",
@@ -35,14 +35,14 @@ export async function GET(request: Request) {
           </h1>
         </div>
 
-        <div tw="flex justify-center border-b border-zinc-200">
+        <div tw="flex justify-center border-b border-[#dde3ea]">
           <p
             tw="mt-0 mb-0 pt-4 pb-4 pl-8 pr-8"
             style={{
-              fontFamily: "GeistSans",
+              fontFamily: "Archivo",
               fontWeight: 500,
               fontSize: 32,
-              color: isForSale ? "#22c55e" : "#71717a",
+              color: isForSale ? "#4f7f1f" : "#4e637a",
             }}
           >
             {isForSale
@@ -52,10 +52,10 @@ export async function GET(request: Request) {
         </div>
       </div>
 
-      <div tw="absolute flex inset-y-0 w-px bg-zinc-200 left-16" />
-      <div tw="absolute flex inset-y-0 w-px bg-zinc-200 right-16" />
-      <div tw="absolute flex inset-x-0 h-px bg-zinc-200 top-16" />
-      <div tw="absolute flex inset-x-0 h-px bg-zinc-200 bottom-16" />
+      <div tw="absolute flex inset-y-0 w-px bg-[#dde3ea] left-16" />
+      <div tw="absolute flex inset-y-0 w-px bg-[#dde3ea] right-16" />
+      <div tw="absolute flex inset-x-0 h-px bg-[#dde3ea] top-16" />
+      <div tw="absolute flex inset-x-0 h-px bg-[#dde3ea] bottom-16" />
 
       <div tw="absolute flex bottom-16 right-16">
         <svg
@@ -76,14 +76,14 @@ export async function GET(request: Request) {
       height: 630,
       fonts: [
         {
-          name: "GeistSans",
-          data: geistMedium,
-          weight: 500,
+          name: "Archivo",
+          data: archivoSemiBold,
+          weight: 600,
         },
         {
-          name: "GeistSans",
-          data: geistSemiBold,
-          weight: 600,
+          name: "Archivo",
+          data: archivoBold,
+          weight: 700,
         },
       ],
       headers: {

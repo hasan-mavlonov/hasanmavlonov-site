@@ -4,12 +4,12 @@ import { ImageResponse } from "next/og"
 
 import { clampParam } from "../params"
 
-const geistSemiBold = readFileSync(
-  join(process.cwd(), "src/assets/fonts/Geist-SemiBold.ttf")
+const archivoSemiBold = readFileSync(
+  join(process.cwd(), "src/assets/fonts/Archivo-SemiBold.ttf")
 )
 
-const geistMonoRegular = readFileSync(
-  join(process.cwd(), "src/assets/fonts/GeistMono-Regular.ttf")
+const plexMonoRegular = readFileSync(
+  join(process.cwd(), "src/assets/fonts/IBMPlexMono-Regular.ttf")
 )
 
 export async function GET(request: Request) {
@@ -19,11 +19,11 @@ export async function GET(request: Request) {
   const description = clampParam(searchParams.get("description"), 320)
 
   return new ImageResponse(
-    <div tw="flex h-full w-full bg-black text-zinc-50">
-      <div tw="absolute inset-y-0 left-12 flex w-px border border-zinc-800" />
-      <div tw="absolute inset-y-0 right-12 flex w-px border border-zinc-800" />
-      <div tw="absolute inset-x-0 top-12 flex h-px border border-zinc-800" />
-      <div tw="absolute inset-x-0 bottom-12 flex h-px border border-zinc-800" />
+    <div tw="flex h-full w-full bg-[#070c14] text-[#e6edf5]">
+      <div tw="absolute inset-y-0 left-12 flex w-px border border-[#1b2b3f]" />
+      <div tw="absolute inset-y-0 right-12 flex w-px border border-[#1b2b3f]" />
+      <div tw="absolute inset-x-0 top-12 flex h-px border border-[#1b2b3f]" />
+      <div tw="absolute inset-x-0 bottom-12 flex h-px border border-[#1b2b3f]" />
 
       <div tw="absolute top-18 left-18 flex">
         <svg
@@ -39,16 +39,16 @@ export async function GET(request: Request) {
         </svg>
       </div>
 
-      <div tw="absolute inset-x-0 top-40 bottom-24 flex flex-col justify-end border-t-2 border-zinc-800">
+      <div tw="absolute inset-x-0 top-40 bottom-24 flex flex-col justify-end border-t-2 border-[#1b2b3f]">
         <div
-          tw="border-t-2 border-b-2 border-zinc-800 px-18"
+          tw="border-t-2 border-b-2 border-[#1b2b3f] px-18"
           style={{
-            fontFamily: "GeistSans",
+            fontFamily: "Archivo",
             fontWeight: 600,
             fontSize: 64,
             lineHeight: 1,
             textWrap: "balance",
-            letterSpacing: "-0.025em",
+            letterSpacing: "-0.035em",
           }}
         >
           {title}
@@ -57,9 +57,9 @@ export async function GET(request: Request) {
         {description && (
           <div tw="flex flex-col">
             <div
-              tw="border-b-2 border-zinc-800 px-18 py-8 text-zinc-400"
+              tw="border-b-2 border-[#1b2b3f] px-18 py-8 text-[#a9bcd0]"
               style={{
-                fontFamily: "GeistMono",
+                fontFamily: "IBM Plex Mono",
                 fontWeight: 400,
                 fontSize: 32,
                 lineHeight: 1.25,
@@ -77,13 +77,13 @@ export async function GET(request: Request) {
       height: 630,
       fonts: [
         {
-          name: "GeistSans",
-          data: geistSemiBold,
+          name: "Archivo",
+          data: archivoSemiBold,
           weight: 600,
         },
         {
-          name: "GeistMono",
-          data: geistMonoRegular,
+          name: "IBM Plex Mono",
+          data: plexMonoRegular,
           weight: 400,
         },
       ],

@@ -5,22 +5,25 @@ export const USER: User = {
   lastName: "Mavlonov",
   displayName: "Hasan Mavlonov",
   username: "hasan-mavlonov",
-  bio: "AI and backend engineer. Shipping LLM pipelines that verify their own output.",
-  flipSentences: [
-    "AI and backend engineer.",
-    "B.Sc. in Artificial Intelligence at ECUST.",
-    "I build training pipelines that check their own work.",
-    "Django, FastAPI, PyTorch.",
-  ],
+  bio: "CTO and co-founder building persistent personality and identity infrastructure for AI agents.",
+  statement:
+    "I build persistent personality and identity infrastructure for AI agents.",
+  subtitle:
+    "Traits measured, anchored and restored across sessions, so an agent stays the same entity after the context is gone instead of resetting to the base model.",
   address: "Shanghai, China",
   emailB64: "aGFzYW5AbWluZGZvcm0tYWkuY29t", // base64 encoded
   website: "https://hasanmavlonov.com",
-  jobTitle: "AI/Backend Engineer",
+  jobTitle: "CTO & Co-founder, MindForm AI",
   jobs: [
     {
-      title: "AI/ML Engineer",
-      company: "EduX",
-      experienceId: "edux",
+      title: "CTO & Co-founder",
+      company: "MindForm AI",
+      experienceId: "mindform-ai",
+    },
+    {
+      title: "CTO",
+      company: "Defex",
+      experienceId: "defex",
     },
     {
       title: "B.Sc. Artificial Intelligence",
@@ -28,23 +31,25 @@ export const USER: User = {
       experienceId: "ecust",
     },
   ],
-  about: `- I'm Hasan — an AI and backend engineer studying Artificial Intelligence at East China University of Science and Technology, in Shanghai.
-- I build the unglamorous half of machine learning: generation pipelines that verify their own output, evaluation harnesses written before there is a checkpoint to evaluate, and the gates that stop unverified data from reaching a training run.
-- Currently building the AI problem-generation pipeline at [EduX](#experience-edux), a government education platform serving 60,000+ registered students in Uzbek and Russian.
-- Author of [StableMind](https://doi.org/10.5281/zenodo.20593641), a preprint on a two-timescale architecture for persistent personality in LLM agents.
-- Before the AI work I shipped backends: Django REST Framework, FastAPI, PostgreSQL, and one RFID inventory system that cut label printing hardware cost by ~97%.
+  about: `- I'm Hasan, CTO and co-founder of [MindForm AI](#experience-mindform-ai). We build StableMind: a persistence layer that gives an AI agent a measurable Big Five personality that survives across sessions, models and restarts.
+- I'm also CTO at [Defex](https://defex.app), where self-teaching robots attempt an assembly, physically test the joint and learn from the result. Backed by NVIDIA Inception, Google for Startups and Z Fellows.
+- Author of the [StableMind preprint](https://doi.org/10.5281/zenodo.20593641), endorsed for arXiv submission, with a live demo on [Hugging Face](https://huggingface.co/spaces/hasanmavlonov/stablemind).
+- Studying Artificial Intelligence at East China University of Science and Technology in Shanghai. Before this I shipped backends: Django, FastAPI, PostgreSQL, and one RFID inventory system that cut label printing hardware cost by about 97%.
 `,
   avatar: "/monogram.svg",
   ogImage:
-    "/og/simple?title=Hasan%20Mavlonov&description=AI%2FBackend%20Engineer",
+    "/og/simple?title=Hasan%20Mavlonov&description=CTO%20%26%20Co-founder%2C%20MindForm%20AI",
   keywords: [
     "hasan mavlonov",
     "hasanmavlonov",
     "hasan-mavlonov",
     "mavlonov",
-    "ai engineer",
-    "backend engineer",
-    "machine learning engineer",
+    "mindform ai",
+    "stablemind",
+    "defex",
+    "cto",
+    "founder",
+    "ai agents",
     "ecust",
     "shanghai",
   ],

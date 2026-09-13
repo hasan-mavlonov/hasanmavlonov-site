@@ -1,33 +1,43 @@
-import { BriefcaseBusinessIcon, CodeXmlIcon, GitBranchIcon } from "lucide-react"
+import { BotIcon, BrainCircuitIcon, CodeXmlIcon } from "lucide-react"
 
 import type { Experience } from "@/features/portfolio/types/experiences"
 
 export const EXPERIENCES: Experience[] = [
   {
-    id: "edux",
-    companyName: "EduX",
-    location: "Tashkent, Uzbekistan",
+    id: "mindform-ai",
+    companyName: "MindForm AI",
+    location: "Shanghai, China",
+    positions: [
+      {
+        id: "mindform-ai-cto",
+        title: "CTO & Co-founder",
+        employmentPeriod: {
+          start: "01.2026",
+        },
+        icon: <BrainCircuitIcon />,
+        description: `Building StableMind: identity and persistence infrastructure for AI agents, built on the OCEAN (Big Five) personality traits. An agent's traits are measured, anchored and restored across sessions, so it stays the same entity instead of resetting to the base model. Five-person team.`,
+        skills: ["AI agents", "Personality modelling", "Infrastructure"],
+        isExpanded: true,
+      },
+    ],
+    isCurrentEmployer: true,
+  },
+  {
+    id: "defex",
+    companyName: "Defex",
+    companyWebsite: "https://defex.app",
+    location: "San Francisco, USA",
     locationType: "Remote",
     positions: [
       {
-        id: "edux-ai-ml-engineer",
-        title: "AI/ML Engineer",
+        id: "defex-cto",
+        title: "CTO",
         employmentPeriod: {
-          start: "2026",
+          start: "03.2026",
         },
-        employmentType: "Contract",
-        icon: <BriefcaseBusinessIcon />,
-        description: `Building the AI problem-generation pipeline for a government education platform that is live and serving 60,000+ registered students, generating olympiad-level math problems in Uzbek and Russian.
-- Designed an independent verification stage that re-solves every generated problem before it enters the training set, since a newly generated problem has no existing answer key to check against.
-- Built a pipeline merging hand-verified and auto-verified examples into training-ready data, with automated checks that block fine-tuning until a minimum verified volume is met per subject.
-- Built an evaluation harness comparing fine-tuned checkpoints against the prompted baseline before any production switch, written before a checkpoint existed to run it on.`,
-        skills: [
-          "Python",
-          "LLM Fine-tuning",
-          "Data Pipelines",
-          "Evaluation Harnesses",
-          "Synthetic Data",
-        ],
+        icon: <BotIcon />,
+        description: `Self-teaching assembly robots for manufacturing. A robot attempts a connector assembly, physically tests the joint, and learns from the result. Backed by NVIDIA Inception, Google for Startups and Z Fellows.`,
+        skills: ["Robotics", "Reinforcement learning", "Manufacturing"],
         isExpanded: true,
       },
     ],
@@ -37,7 +47,6 @@ export const EXPERIENCES: Experience[] = [
     id: "elev8",
     companyName: "Elev8",
     location: "Shanghai, China",
-    locationType: "On-site",
     positions: [
       {
         id: "elev8-ai-engineer-intern",
@@ -48,19 +57,8 @@ export const EXPERIENCES: Experience[] = [
         },
         employmentType: "Internship",
         icon: <CodeXmlIcon />,
-        description: `- Designed a framework for Stable Diffusion XL LoRA model training using Kohya_ss, with image generation through ComfyUI.
-- Built an AIGC influencer pipeline on the OpenAI API, Gemini API and Instagram APIs.
-- Developed a model training website that automates the Stable Diffusion XL training workflow.`,
-        skills: [
-          "Python",
-          "Stable Diffusion XL",
-          "LoRA",
-          "Kohya_ss",
-          "ComfyUI",
-          "OpenAI API",
-          "Gemini API",
-        ],
-        isExpanded: true,
+        description: `Built the training and image-generation pipeline for Stable Diffusion XL models, and an AI influencer content pipeline on the OpenAI, Gemini and Instagram APIs.`,
+        skills: ["Stable Diffusion XL", "Generative AI"],
       },
     ],
   },
@@ -77,36 +75,8 @@ export const EXPERIENCES: Experience[] = [
           end: "09.2025",
         },
         icon: <CodeXmlIcon />,
-        description: `- Cut RFID label printing cost by roughly 97%, from $2,000 industrial RFID printers to $60 thermal barcode printers, by mapping barcodes to RFID codes at print time and syncing the mapping to the backend in real time.
-- Built a Windows background agent (SWHidApi.dll) that reads tags from an omnidirectional RFID reader over USB and relays them to a local Flask API, with noisy-read filtering and stable tag batching before ingestion.
-- Built a real-time RFID inventory and POS backend on Django REST Framework and PostgreSQL, with JWT role-based access control for Owner, Cashier and Super Admin.`,
-        skills: [
-          "Python",
-          "Django REST Framework",
-          "PostgreSQL",
-          "Flask",
-          "JWT",
-          "RFID",
-        ],
-      },
-    ],
-  },
-  {
-    id: "yandex-eats-replica",
-    companyName: "Yandex Eats Backend (replica)",
-    companyWebsite: "https://github.com/hasan-mavlonov",
-    positions: [
-      {
-        id: "yandex-eats-open-source-contributor",
-        title: "Open Source Contributor",
-        employmentPeriod: {
-          start: "2024",
-          end: "2024",
-        },
-        icon: <GitBranchIcon />,
-        description: `- Designed a Yandex Eats style backend using Django, FastAPI and PostgreSQL.
-- Implemented authentication, restaurant and menu management, the order workflow and delivery assignment modules.`,
-        skills: ["Python", "Django", "FastAPI", "PostgreSQL", "Docker"],
+        description: `Built a real-time RFID inventory and point-of-sale backend, and cut label printing hardware cost by about 97% by mapping barcodes to RFID codes at print time.`,
+        skills: ["Django", "PostgreSQL", "RFID"],
       },
     ],
   },

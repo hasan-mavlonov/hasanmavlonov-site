@@ -85,10 +85,6 @@ Run `npm run build` before `npm run check-types` on a fresh checkout: the
 typecheck depends on the `PageProps` global that `next build` generates into
 `.next/types/`.
 
-Known failure: `npm run lint` reports React-compiler errors in
-`src/components/charts/**` (refs read during render, setState in an effect).
-They arrived with the upstream import and are not yet fixed.
-
 ## Content
 
 Portfolio sections read from `src/features/portfolio/data/`. Blog posts are MDX

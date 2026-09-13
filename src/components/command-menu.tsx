@@ -7,18 +7,17 @@ import { useTiks } from "@rexa-developer/tiks/react"
 import {
   BoxIcon,
   BriefcaseBusinessIcon,
-  CircleCheckBigIcon,
   CornerDownLeftIcon,
   CrownIcon,
   DownloadIcon,
   FileTextIcon,
   GraduationCapIcon,
+  LanguagesIcon,
   LayersIcon,
   LineChartIcon,
   MonitorIcon,
   MoonStarIcon,
   RssIcon,
-  ScaleIcon,
   SunMediumIcon,
   TextInitialIcon,
 } from "lucide-react"
@@ -26,7 +25,9 @@ import { useTheme } from "next-themes"
 import { useHotkeys } from "react-hotkeys-hook"
 import { toast } from "sonner"
 
+import { META_THEME_COLORS } from "@/config/site"
 import { trackEvent } from "@/lib/events"
+import { useMetaColor } from "@/hooks/use-meta-color"
 import { useMutationObserver } from "@/hooks/use-mutation-observer"
 import {
   CommandDialog,
@@ -109,6 +110,12 @@ const PORTFOLIO_LINKS: CommandLinkItem[] = [
     icon: <GraduationCapIcon />,
   },
   {
+    title: "Languages",
+    href: "/#languages",
+    kind: "page",
+    icon: <LanguagesIcon />,
+  },
+  {
     title: "Projects",
     href: "/#projects",
     kind: "page",
@@ -119,18 +126,6 @@ const PORTFOLIO_LINKS: CommandLinkItem[] = [
     href: "/#awards",
     kind: "page",
     icon: <CrownIcon />,
-  },
-  {
-    title: "Certifications",
-    href: "/#certs",
-    kind: "page",
-    icon: <CircleCheckBigIcon />,
-  },
-  {
-    title: "Intellectual property",
-    href: "/#ip",
-    kind: "page",
-    icon: <ScaleIcon />,
   },
 ]
 
@@ -175,6 +170,7 @@ export function CommandMenu({
   const router = useRouter()
 
   const { setTheme } = useTheme()
+  const { setMetaColor } = useMetaColor()
 
   const [open, setOpen] = useState(false)
 
@@ -255,8 +251,16 @@ export function CommandMenu({
       })
 
       setTheme(theme)
+
+      const resolvesDark =
+        theme === "dark" ||
+        (theme === "system" &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      setMetaColor(
+        resolvesDark ? META_THEME_COLORS.dark : META_THEME_COLORS.light
+      )
     },
-    [setTheme]
+    [setTheme, setMetaColor]
   )
 
   const blogLinks = useMemo(
