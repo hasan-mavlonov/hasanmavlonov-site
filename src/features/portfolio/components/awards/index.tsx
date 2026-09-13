@@ -5,7 +5,6 @@ import {
   Panel,
   PanelHeader,
   PanelTitle,
-  PanelTitleSup,
 } from "@/features/portfolio/components/panel"
 import { PanelTitleCopy } from "@/features/portfolio/components/panel-title-copy"
 import { AWARDS } from "@/features/portfolio/data/awards"
@@ -24,7 +23,6 @@ export function Awards() {
       <PanelHeader>
         <PanelTitle>
           <a href={`#${ID}`}>Awards</a>
-          <PanelTitleSup>({AWARDS.length})</PanelTitleSup>
           <PanelTitleCopy id={ID} />
         </PanelTitle>
       </PanelHeader>

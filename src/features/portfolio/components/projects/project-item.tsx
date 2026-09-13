@@ -57,25 +57,22 @@ export function ProjectItem({
               {project.title}
             </h3>
 
-            <dl className="text-sm text-muted-foreground">
-              <dt className="sr-only">Period</dt>
-              <dd className="flex items-center gap-0.5">
-                <span>{start}</span>
-                {!isSinglePeriod && (
-                  <>
-                    <span className="font-mono">—</span>
-                    {isOngoing ? (
-                      <InfinityIcon
-                        className="size-4.5 translate-y-[0.5px]"
-                        aria-label="Present"
-                      />
-                    ) : (
-                      <span>{end}</span>
-                    )}
-                  </>
-                )}
-              </dd>
-            </dl>
+            <p className="flex items-center gap-0.5 text-sm text-muted-foreground">
+              <span>{start}</span>
+              {!isSinglePeriod && (
+                <>
+                  <span className="font-mono">—</span>
+                  {isOngoing ? (
+                    <InfinityIcon
+                      className="size-4.5 translate-y-[0.5px]"
+                      aria-label="Present"
+                    />
+                  ) : (
+                    <span>{end}</span>
+                  )}
+                </>
+              )}
+            </p>
           </div>
 
           <Tooltip>

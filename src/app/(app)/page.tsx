@@ -8,6 +8,7 @@ import { absoluteUrl, cn } from "@/lib/utils"
 import { getBlogPosts } from "@/features/doc/data/documents"
 import { Awards } from "@/features/portfolio/components/awards"
 import { Blog } from "@/features/portfolio/components/blog"
+import { Contact } from "@/features/portfolio/components/contact"
 import { Education } from "@/features/portfolio/components/education"
 import { Experiences } from "@/features/portfolio/components/experiences"
 import { Hello } from "@/features/portfolio/components/hello"
@@ -15,11 +16,8 @@ import {
   Insights,
   InsightsSkeleton,
 } from "@/features/portfolio/components/insights"
-import { Languages } from "@/features/portfolio/components/languages"
-import { Overview } from "@/features/portfolio/components/overview"
 import { ProfileHeader } from "@/features/portfolio/components/profile-header"
 import { Projects } from "@/features/portfolio/components/projects"
-import { SocialLinks } from "@/features/portfolio/components/social-links"
 import { USER } from "@/features/portfolio/data/user"
 
 export const metadata: Metadata = {
@@ -41,8 +39,7 @@ export default function HomePage() {
           <ProfileHeader />
           <Separator />
 
-          <Overview />
-          <SocialLinks />
+          <Contact />
           <Separator />
 
           <Hello />
@@ -59,9 +56,6 @@ export default function HomePage() {
           <Separator />
 
           <Education />
-          <Separator />
-
-          <Languages />
           <Separator />
 
           <Projects />

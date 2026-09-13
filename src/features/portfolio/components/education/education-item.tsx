@@ -2,7 +2,6 @@ import { GraduationCapIcon, InfinityIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { IconTile } from "@/components/ui/icon-tile"
-import { Tag } from "@/components/ui/tag"
 import {
   Collapsible,
   CollapsibleChevronsUpDownIcon,
@@ -11,13 +10,12 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/base/ui/collapsible"
-import { Separator } from "@/components/base/ui/separator"
 import { Markdown } from "@/components/markdown"
 import type { Education } from "@/features/portfolio/types/education"
 
 export function EducationItem({ item }: { item: Education }) {
-  const { start, end } = item.period
-  const isOngoing = !end
+  const title = [item.degree, item.fieldOfStudy].filter(Boolean).join(" ")
+  const period = item.period
 
   return (
     <div className="group/education-item relative before:absolute before:left-3 before:h-full before:w-px before:bg-border">
@@ -37,66 +35,36 @@ export function EducationItem({ item }: { item: Education }) {
             "data-disabled:before:content-none"
           )}
         >
-          <div className="relative z-1 mb-1 flex items-start gap-3 text-base">
+          <div className="relative z-1 flex items-start gap-3 text-base">
             <IconTile>
               <GraduationCapIcon />
             </IconTile>
 
-            <h3 className="flex-1 font-medium text-balance">{item.school}</h3>
+            <h3 className="flex-1 font-medium text-balance">
+              {title}
+              <span className="text-muted-foreground"> · {item.school}</span>
+            </h3>
 
             <div className="shrink-0 text-muted-foreground group-data-disabled:hidden [&_svg]:h-lh [&_svg]:w-4">
               <CollapsibleChevronsUpDownIcon duration={0.15} />
             </div>
           </div>
 
-          <dl className="flex flex-wrap items-center gap-x-2 pl-9 text-sm text-muted-foreground">
-            <div>
-              <dt className="sr-only">Study period</dt>
-              <dd className="flex items-center gap-0.5 tabular-nums">
-                <span>{start}</span>
-                <span className="font-mono">—</span>
-                {isOngoing ? (
-                  <InfinityIcon
-                    className="size-4.5 translate-y-[0.5px]"
-                    aria-label="Present"
-                    strokeWidth={1.5}
-                  />
-                ) : (
-                  <span>{end}</span>
-                )}
-              </dd>
-            </div>
-
-            {item.degree && (
-              <>
-                <Separator
-                  className="data-vertical:h-4 data-vertical:self-center"
-                  orientation="vertical"
-                  aria-hidden
+          {period && (
+            <p className="flex items-center gap-0.5 pt-1 pl-9 text-sm text-muted-foreground tabular-nums">
+              <span>{period.start}</span>
+              <span className="font-mono">—</span>
+              {period.end ? (
+                <span>{period.end}</span>
+              ) : (
+                <InfinityIcon
+                  className="size-4.5 translate-y-[0.5px]"
+                  aria-label="Present"
+                  strokeWidth={1.5}
                 />
-
-                <div>
-                  <dt className="sr-only">Degree</dt>
-                  <dd>{item.degree}</dd>
-                </div>
-              </>
-            )}
-
-            {item.fieldOfStudy && (
-              <>
-                <Separator
-                  className="data-vertical:h-4 data-vertical:self-center"
-                  orientation="vertical"
-                  aria-hidden
-                />
-
-                <div>
-                  <dt className="sr-only">Field of study</dt>
-                  <dd>{item.fieldOfStudy}</dd>
-                </div>
-              </>
-            )}
-          </dl>
+              )}
+            </p>
+          )}
         </CollapsibleTrigger>
 
         <CollapsibleContent className="overflow-hidden">
@@ -106,16 +74,6 @@ export function EducationItem({ item }: { item: Education }) {
             </div>
           )}
         </CollapsibleContent>
-
-        {Array.isArray(item.skills) && item.skills.length > 0 && (
-          <ul className="flex flex-wrap gap-1.5 pt-3 pl-9">
-            {item.skills.map((skill, index) => (
-              <li key={index} className="flex">
-                <Tag>{skill}</Tag>
-              </li>
-            ))}
-          </ul>
-        )}
       </Collapsible>
     </div>
   )

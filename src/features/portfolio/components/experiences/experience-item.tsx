@@ -48,28 +48,22 @@ export function ExperienceItem({ experience }: { experience: Experience }) {
             )}
           </h3>
 
-          {experience.location && experience.locationType && (
-            <dl className="flex min-w-0 items-center gap-1.5 text-sm whitespace-nowrap text-muted-foreground">
-              <dt className="sr-only">Location</dt>
-              <dd className="truncate">{experience.location}</dd>
+          <p className="flex min-w-0 items-center gap-1.5 text-sm whitespace-nowrap text-muted-foreground empty:hidden">
+            {experience.location && (
+              <span className="truncate">
+                {experience.location}
+                {experience.locationType && ` (${experience.locationType})`}
+              </span>
+            )}
 
-              <dt className="sr-only">Location type</dt>
-              <dd>({experience.locationType})</dd>
-
-              {experience.isCurrentEmployer && (
-                <>
-                  <dt className="sr-only">Employment status</dt>
-                  <dd>
-                    <span className="sr-only">Current</span>
-                    <span className="relative flex size-2.5 translate-x-px translate-y-px items-center justify-center">
-                      <span className="absolute inline-flex size-2.5 animate-ping rounded-full bg-info opacity-50" />
-                      <span className="relative inline-flex size-1.5 rounded-full bg-info" />
-                    </span>
-                  </dd>
-                </>
-              )}
-            </dl>
-          )}
+            {experience.isCurrentEmployer && (
+              <span className="relative flex size-2.5 translate-x-px translate-y-px items-center justify-center">
+                <span className="sr-only">Current</span>
+                <span className="absolute inline-flex size-2.5 animate-ping rounded-full bg-info opacity-50" />
+                <span className="relative inline-flex size-1.5 rounded-full bg-info" />
+              </span>
+            )}
+          </p>
         </div>
       </div>
 
