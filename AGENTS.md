@@ -1,52 +1,43 @@
-# AI agent guidelines for chanhdai.com
+# AI agent guidelines for hasanmavlonov.com
 
-Next.js 16 (App Router) portfolio, blog, and shadcn registry website.
+Next.js 16 (App Router) personal portfolio and blog. Forked from the MIT-licensed
+chanhdai.com, with its shadcn registry, testimonials, sponsors and bookmarks
+removed.
 
-**Stack**: TypeScript, React 19, Tailwind CSS v4, shadcn/ui, MDX, Vitest, pnpm (Bun for scripts), Vercel
+**Stack**: TypeScript, React 19, Tailwind CSS v4, shadcn/ui, MDX, Vitest, npm, Render
 
 ## Project structure
 
-| Directory                              | Purpose                                                            |
-| -------------------------------------- | ------------------------------------------------------------------ |
-| `src/app/`                             | App Router pages, layouts, API routes                              |
-| `src/components/`                      | Shared UI components                                               |
-| `src/registry/`                        | Registry source (components, hooks, blocks, examples, lib)         |
-| `src/features/`                        | Feature modules: `doc`, `blog`, `portfolio`, `sponsor`, `bookmark` |
-| `src/config/`                          | Site (`site.ts`), registry (`registry.ts`), JSON-LD config         |
-| `src/scripts/`                         | Build scripts (registry, icons, capture) run with Bun              |
-| `src/hooks/`, `src/lib/`, `src/utils/` | Hooks, libraries, utilities                                        |
+| Directory                              | Purpose                                     |
+| -------------------------------------- | ------------------------------------------- |
+| `src/app/`                             | App Router pages, layouts, API routes       |
+| `src/components/`                      | Shared UI components                        |
+| `src/features/`                        | Feature modules: `doc`, `blog`, `portfolio` |
+| `src/config/`                          | Site (`site.ts`) and JSON-LD config         |
+| `src/hooks/`, `src/lib/`, `src/utils/` | Hooks, libraries, utilities                 |
 
-**Key files**: `components.json` (shadcn config), `src/features/portfolio/data/` (portfolio data), `src/features/{sponsor,bookmark}/data.tsx` (sponsor and bookmark data), `.env.example` (env vars)
+**Key files**: `components.json` (shadcn config), `src/features/portfolio/data/`
+(portfolio data), `.env.example` (env vars), `render.yaml` (deploy)
 
-## Component registry
+## Portfolio content
 
-Built on shadcn/ui. Registry types and their definition files:
-
-| Type                 | File                                   |
-| -------------------- | -------------------------------------- |
-| `registry:component` | `src/registry/components/_registry.ts` |
-| `registry:hook`      | `src/registry/hooks/_registry.ts`      |
-| `registry:block`     | `src/registry/blocks/_registry.ts`     |
-| `registry:example`   | `src/registry/examples/_registry.ts`   |
-| `registry:lib`       | `src/registry/lib/_registry.ts`        |
-| `registry:style`     | `src/registry/styles/_registry.ts`     |
-
-**NEVER EDIT** auto-generated outputs of `pnpm registry:build`: `registry.json`, `registry-stats.json`, `src/registry/__index__.tsx`, `src/registry/transformed/`, `public/r/*.json`
-
-### Adding a new component
-
-1. Create component in `src/registry/components/[name]/`
-2. Register in the appropriate `_registry.ts` file
-3. Create example in `src/registry/examples/`
-4. Run `pnpm registry:build`
-5. Add docs MDX in `src/features/doc/content/components/` (category is derived from the folder)
+Every section of the home page reads from `src/features/portfolio/data/`, so
+editing the site's content means editing those files, not the components:
+`user.ts`, `social-links.ts`, `tech-stack.tsx`, `experiences.tsx`,
+`education.ts`, `projects.tsx`, `awards.tsx`, `certifications.ts`,
+`intellectual-property.ts`, `timeline.ts`.
 
 ## Content system
 
-All content lives in `src/features/doc/content/` as MDX files, split into `blog/` and `components/`. The category is derived from the immediate subfolder name (not declared in frontmatter), so a file's location determines whether it's a blog post or component doc.
+Blog posts live in `src/features/doc/content/blog/` as MDX files. The category
+is derived from the immediate subfolder name rather than declared in
+frontmatter, so a file's location is what makes it a blog post.
 
 - **Data layer**: `src/features/doc/data/documents.ts` (`getAllDocs`, `getDocBySlug`, `getDocsByCategory`)
 - **Blog UI**: `src/features/blog/` (rendering only, imports data from `features/doc`)
+
+The home page blog panel and `/blog` both handle the empty case, so the site
+works with no posts at all.
 
 ## Coding guidelines
 
@@ -60,23 +51,35 @@ All content lives in `src/features/doc/content/` as MDX files, split into `blog/
 
 ## Commands
 
+npm is the only supported package manager: there is no pnpm lockfile, and
+`.npmrc` sets `legacy-peer-deps` because fumadocs-core declares an optional
+peer on zod 4 while this app pins zod 3 for its own schemas.
+
 ```bash
-pnpm dev                # Dev server
-pnpm build              # Production build (runs registry:build first)
-pnpm test               # Vitest (watch)
-pnpm test:run           # Vitest (single run)
-pnpm lint               # ESLint
-pnpm lint:fix           # ESLint with --fix
-pnpm format:write       # Prettier
-pnpm check-types        # Type checking (tsc --noEmit)
-pnpm registry:build     # Build shadcn registry (Bun script + shadcn build)
-pnpm registry:validate  # Validate generated registry.json
-pnpm icons:build        # Build registry icons
+npm install        # Install dependencies
+npm run dev        # Dev server
+npm run build      # Production build
+npm start          # Serve the production build (honours PORT)
+npm test           # Vitest (watch)
+npm run test:run   # Vitest (single run)
+npm run lint       # ESLint
+npm run lint:fix   # ESLint with --fix
+npm run format:write  # Prettier
+npm run check-types   # Type checking (tsc --noEmit)
 ```
 
-### Local dev URL
+`npm run check-types` needs the `PageProps` global that `next build` generates
+into `.next/types/`, so run a build first on a fresh checkout.
 
-A dev server is usually already running behind `https://ncdai.localhost` (see `allowedDevOrigins` in `next.config.ts` and `NEXT_PUBLIC_APP_URL` in `.env.local`). Use that origin to test pages and routes, never `http://localhost:3000` or a raw port. It also makes generated absolute URLs match what the code produces.
+Known failure: `npm run lint` reports React-compiler errors in
+`src/components/charts/**` (refs read during render, setState in an effect).
+These came in with the upstream import and are not yet fixed.
+
+## Deployment
+
+Render web service, described by `render.yaml` (`npm ci --include=dev &&
+npm run build`, then `npm start`). Dev dependencies are required at build time,
+so do not set `NODE_ENV=production` for the build step.
 
 <!-- BEGIN:nextjs-agent-rules -->
 
