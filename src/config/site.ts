@@ -6,7 +6,7 @@ import { USER } from "@/features/portfolio/data/user"
 
 export const SITE_INFO = {
   name: USER.displayName,
-  url: process.env.NEXT_PUBLIC_APP_URL || "https://chanhdai.com",
+  url: process.env.NEXT_PUBLIC_APP_URL || "https://hasanmavlonov.com",
   ogImage: USER.ogImage,
   description: USER.bio,
   keywords: USER.keywords,
@@ -14,7 +14,7 @@ export const SITE_INFO = {
 
 export const LICENSE = {
   name: "MIT License",
-  url: "https://github.com/ncdai/chanhdai.com/blob/main/LICENSE",
+  url: "https://github.com/hasan-mavlonov/hasanmavlonov-site/blob/main/LICENSE",
 }
 
 export const META_THEME_COLORS = {
@@ -24,20 +24,12 @@ export const META_THEME_COLORS = {
 
 export const MAIN_NAV: NavItem<Route>[] = [
   {
-    title: "Components",
-    href: "/components",
-  },
-  {
-    title: "Blocks",
-    href: "/blocks",
-  },
-  {
     title: "Blog",
     href: "/blog",
   },
   {
-    title: "Sponsors",
-    href: "/sponsors",
+    title: "Timeline",
+    href: "/timeline",
   },
 ]
 
@@ -51,11 +43,10 @@ export const MOBILE_NAV: NavItem<Route>[] = [
 
 export const X_HANDLE = SOCIAL.x.handle
 export const GITHUB_USERNAME = SOCIAL.github.handle
-export const SOURCE_CODE_GITHUB_REPO = "ncdai/chanhdai.com"
-export const SOURCE_CODE_GITHUB_URL = "https://github.com/ncdai/chanhdai.com"
-
-export const SPONSORSHIP_URL = "https://github.com/sponsors/ncdai"
+export const SOURCE_CODE_GITHUB_REPO = "hasan-mavlonov/hasanmavlonov-site"
+export const SOURCE_CODE_GITHUB_URL =
+  "https://github.com/hasan-mavlonov/hasanmavlonov-site"
 
 export const UTM_PARAMS = {
-  utm_source: "chanhdai.com",
+  utm_source: "hasanmavlonov.com",
 }

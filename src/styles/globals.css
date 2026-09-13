@@ -4,7 +4,6 @@
 
 @import "./typeset.css";
 @import "./scroll-fade-effect.css";
-@import "./style-preview.css";
 
 @plugin "@tailwindcss/typography";
 
@@ -661,16 +660,4 @@
   --typeset-flow: 1em;
 
   font-size: var(--typeset-size);
-}
-
-#carbonads #carbon-responsive {
-  --carbon-padding: calc(var(--spacing) * 3);
-  --carbon-bg-primary: var(--surface);
-  --carbon-bg-secondary: var(--border);
-  --carbon-text-color: var(--foreground);
-  @apply gap-2 font-sans;
-}
-
-#carbonads #carbon-responsive .carbon-poweredby {
-  @apply text-xs text-muted-foreground/80 opacity-100;
 }

@@ -12,8 +12,6 @@ import { SOCIAL } from "@/features/portfolio/data/social-links"
 // Imported here rather than through `@/config/site`, which client components
 // pull in, to keep the manifest out of client bundles.
 import packageJson from "../../package.json"
-// Precomputed by `pnpm registry:build`, so the count costs no registry import.
-import registryStats from "../../registry-stats.json"
 import { ChanhDaiMark } from "./chanhdai-mark"
 
 const INSPIRED_BY = [
@@ -28,11 +26,11 @@ const INSPIRED_BY = [
 ]
 
 const OPENPANEL_URL =
-  "https://openpanel.dev?utm_source=chanhdai.com&utm_medium=referral&utm_campaign=footer"
+  "https://openpanel.dev?utm_source=hasanmavlonov.com&utm_medium=referral&utm_campaign=footer"
 
 // Not derived from `SITE_INFO.url`: that follows `NEXT_PUBLIC_APP_URL` and
-// would read `ncdai.localhost` in dev.
-const SITE_TITLE = "chanhdai.com"
+// would read a localhost origin in dev.
+const SITE_TITLE = "hasanmavlonov.com"
 
 const SITE_SUBTITLE = packageJson.description
 
@@ -80,14 +78,7 @@ export function SiteFooterCad() {
               <time dateTime={build.date}>{build.date}</time>
             </Field>
 
-            <Field label="Registry">{registryStats.total} items</Field>
-
-            <Field label="Deployed on">
-              <span className="font-sans" aria-hidden>
-                ▲
-              </span>
-              <span className="sr-only">Vercel</span>
-            </Field>
+            <Field label="Deployed on">Render</Field>
 
             <Field label="Source code">
               <a

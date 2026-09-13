@@ -18,7 +18,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/base/ui/button"
 import { Field, FieldError, FieldLabel } from "@/components/base/ui/field"
 import { Callout } from "@/components/callout"
-import { StatusButton } from "@/registry/components/status-button"
+import { StatusButton } from "@/components/status-button"
 import { sendDocFeedback } from "@/features/doc/actions/send-doc-feedback"
 import {
   DOC_FEEDBACK_MESSAGE_MAX_LENGTH,

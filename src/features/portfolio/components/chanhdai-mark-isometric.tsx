@@ -11,9 +11,6 @@ import {
   useTransform,
 } from "motion/react"
 
-import { metalClickSound } from "@/lib/soundcn/metal-click"
-import { useSound } from "@/hooks/soundcn/use-sound"
-
 const transition: Transition = {
   type: "spring",
   mass: 0.5,
@@ -35,8 +32,6 @@ export function ChanhDaiMarkIsometric() {
   }
 
   const ref = useRef<SVGSVGElement>(null)
-
-  const [play] = useSound(metalClickSound)
 
   const shouldReduceMotion = useReducedMotion()
   const isInView = useInView(ref, { margin: "80px" })
@@ -87,7 +82,6 @@ export function ChanhDaiMarkIsometric() {
       aria-hidden
       initial="normal"
       whileTap="pressed"
-      onTap={() => play()}
     >
       <defs>
         <pattern

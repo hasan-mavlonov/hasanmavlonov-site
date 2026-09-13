@@ -1,0 +1,27 @@
+# Render blueprint. Create the service from this file with
+# Render Dashboard -> New -> Blueprint, pointed at this repository.
+#
+# This is a Node web service, not a static site: the app uses server-rendered
+# routes (/og/simple, /og/domain, /vcard) and time-based revalidation, so it
+# needs a running Next.js server.
+services:
+  - type: web
+    name: hasanmavlonov-site
+    runtime: node
+    plan: free
+    # Dev dependencies are required to build (TypeScript, Tailwind, shadcn's
+    # stylesheet), so NODE_ENV is deliberately left unset here - setting it to
+    # production would make npm skip them. `next build` and `next start` set
+    # their own production mode regardless.
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm run start
+    healthCheckPath: /
+    autoDeploy: true
+    envVars:
+      # Keep in sync with .nvmrc.
+      - key: NODE_VERSION
+        value: 24.16.0
+      # Inlined into the client bundle at build time, and used for canonical
+      # URLs, sitemap.xml, llms.txt and Open Graph image URLs.
+      - key: NEXT_PUBLIC_APP_URL
+        value: https://hasanmavlonov.com
