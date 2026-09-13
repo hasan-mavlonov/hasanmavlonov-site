@@ -385,6 +385,7 @@
   --chart-label: #4e637a;
 
   /* Layout */
+  --container-site: 1180px;
   --header-height: --spacing(14);
   --fade-bottom-height: --spacing(24);
 }

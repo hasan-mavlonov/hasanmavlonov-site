@@ -33,6 +33,7 @@ export function InsightsChart({
             "[--chart-1:var(--color-foreground)] [--chart-2:var(--color-muted-foreground)]"
           )}
           data={series}
+          enterTransition={{ duration: 0 }}
           margin={{ top: 16, right: 32, bottom: 40, left: 32 }}
         >
           <Grid horizontal />
