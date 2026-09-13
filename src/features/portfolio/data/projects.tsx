@@ -1,247 +1,64 @@
-import { ChanhDaiMark } from "@/components/chanhdai-mark"
-import {
-  QuaricIcon,
-  ReactWheelPickerIcon,
-  ZaDarkIcon,
-} from "@/components/icons"
+import { BrainIcon, LandmarkIcon, ScanBarcodeIcon } from "lucide-react"
 
 import type { Project } from "../types/projects"
 
 export const PROJECTS: Project[] = [
   {
-    id: "react-wheel-picker",
-    title: "React Wheel Picker",
+    id: "stablemind",
+    title: "StableMind",
     period: {
-      start: "05.2025",
+      start: "2026",
     },
-    link: "https://react-wheel-picker.chanhdai.com",
+    link: "https://doi.org/10.5281/zenodo.20593641",
     skills: [
-      "Open Source",
-      "React",
-      "TypeScript",
-      "Monorepo",
-      "Turborepo",
-      "pnpm-workspace",
-      "Package Publishing",
-      "NPM Registry",
-      "GitHub Actions",
+      "Research",
+      "LLM Agents",
+      "Memory Architecture",
+      "Python",
+      "HuggingFace Spaces",
     ],
-    description: `iOS-like wheel picker for React with smooth inertia scrolling and infinite loop support. / Backed by [▲ Vercel OSS Program](https://vercel.com/blog/summer-2025-oss-program#react-wheel-picker)
-- Natural touch scrolling with smooth inertia, mouse drag and scroll for desktop
-- Infinite loop scrolling
-- Unstyled core for complete style customization
-- Full keyboard navigation and type-ahead search
+    description: `A two-timescale architecture for persistent personality in LLM agents. / Open-access preprint with a citable DOI on Zenodo, plus an interactive live demo on HuggingFace Spaces.
+- Introduces a dual-memory architecture that decouples short-horizon reasoning dynamics from long-term identity persistence.
+- Implements a two-timescale mechanism where fast-updating context governs immediate responses while a slower memory layer maintains consistent behavioural traits across sessions.
+- Endorsed for arXiv submission by Nuo Chen, author of "Diversity Collapse in Multi-Agent LLM Systems".
 `,
-    icon: <ReactWheelPickerIcon />,
+    icon: <BrainIcon />,
     isExpanded: true,
   },
   {
-    id: "chanhdaidotcom",
-    title: "chanhdai.com",
+    id: "ancient-engineering-simulation",
+    title: "Ancient Engineering Simulation System",
     period: {
-      start: "01.2025",
+      start: "2026",
     },
-    link: "https://github.com/ncdai/chanhdai.com",
-    skills: [
-      "Open Source",
-      "Next.js 16",
-      "Tailwind CSS v4",
-      "Radix UI",
-      "Base UI",
-      "Motion",
-      "shadcn/ui",
-      "shadcn registry",
-      "Vercel",
-    ],
-    description: "A pixel-perfect dev portfolio and shadcn registry.",
-    icon: <ChanhDaiMark />,
-  },
-  {
-    id: "quaricdotcom",
-    title: "quaric.com",
-    period: {
-      start: "03.2024",
-    },
-    link: "https://quaric.com",
-    skills: [
-      "Company Project",
-      "Next.js 15",
-      "Tailwind CSS v3",
-      "shadcn/ui",
-      "Strapi 5",
-      "VNPAY-QR",
-      "Docker",
-      "Docker Compose",
-      "NGINX",
-    ],
-    icon: <QuaricIcon />,
-  },
-  {
-    id: "zadark",
-    title: "ZaDark",
-    period: {
-      start: "01.2022",
-    },
-    link: "https://zadark.com",
-    skills: [
-      "Pet Project",
-      "Open Source",
-      "Browser Extension",
-      "CLI",
-      "Docusaurus 3",
-    ],
-    description: `ZaDark adds Dark Mode, anti-peeking, customizable fonts, backgrounds, and more to Zalo Web and PC.
-- Earned 10M+ VND in net sales from a paid Safari Extension*
-- 80k+ downloads on SourceForge* (awarded Community Leader badge by SourceForge)
-- 30k+ active users via Chrome Web Store*
-- Bronze Medal — 10th Design, Manufacturing, and Application Award 2022
-
-<p class="text-muted-foreground">* Peak metrics.</p>
+    link: "https://gugong.xyz",
+    skills: ["AI & Simulation", "Interactive Education", "Rule-based Modeling"],
+    description: `An interactive simulation system modelling ancient engineering principles and construction logic.
+- Simulates historical engineering processes through rule-based structural modelling and interactive reconstruction workflows.
+- Recognized in the 2026 Shanghai University Computer Application Competition.
 `,
-    icon: <ZaDarkIcon />,
+    icon: <LandmarkIcon />,
+    isExpanded: true,
   },
   {
-    id: "qabox",
-    title: "QABox",
+    id: "tracky",
+    title: "Tracky",
     period: {
-      start: "07.2023",
-      end: "07.2023",
+      start: "05.2025",
+      end: "09.2025",
     },
-    link: "https://github.com/ncdai/qabox",
+    link: "https://github.com/hasan-mavlonov",
     skills: [
-      "University Project",
-      "PHP",
-      "MySQL",
-      "MVC",
-      "Docker",
-      "Docker Compose",
+      "Django REST Framework",
+      "PostgreSQL",
+      "Flask",
+      "RFID",
+      "Windows Agent",
     ],
-    description:
-      "- Course: Distributed Applications — FIT@HCMUS\n- Project Score: 10/10\n- Source Code: https://github.com/ncdai/qabox",
-  },
-  {
-    id: "taskbox",
-    title: "TaskBox",
-    period: {
-      start: "07.2023",
-      end: "07.2023",
-    },
-    link: "https://github.com/ncdai/taskbox",
-    skills: [
-      "University Project",
-      "PHP",
-      "MySQL",
-      "MVC",
-      "Docker",
-      "Docker Compose",
-    ],
-    description:
-      "- Course: Distributed Applications — FIT@HCMUS\n- Project Score: 10/10\n- Source Code: https://github.com/ncdai/taskbox",
-  },
-  {
-    id: "daichat-app",
-    title: "DaiChat App",
-    period: {
-      start: "07.2020",
-      end: "07.2020",
-    },
-    link: "https://www.youtube.com/watch?v=H5U3J_W1low",
-    skills: ["University Project", "Java", "Java Swing", "Java Networking"],
-    description: `- Course: Java Application Programming — FIT@HCMUS
-- Requirement: Developed a real-time chat application using Java technologies
-- Project Score: 10/10
-- Source Code:
-  - Server: https://github.com/ncdai/ltudjava-summer2020-chatapp_server
-  - Client: https://github.com/ncdai/ltudjava-summer2020-chatapp_client`,
-  },
-  {
-    id: "qlsv-app",
-    title: "QLSV App",
-    period: {
-      start: "06.2020",
-      end: "06.2020",
-    },
-    link: "https://www.youtube.com/watch?v=tG9SZEBrwog",
-    skills: ["University Project", "Java", "Java Swing", "Hibernate", "MySQL"],
-    description: `- Course: Java Application Programming — FIT@HCMUS
-- Requirement: Built a student management system with role-based functionalities using Java technologies
-- Project Score: 10/10
-- Source Code: https://github.com/ncdai/ltudjava-summer2020-hibernate`,
-  },
-  {
-    id: "penphy",
-    title: "Penphy",
-    period: {
-      start: "01.2019",
-      end: "08.2019",
-    },
-    link: "https://www.youtube.com/watch?v=EdU7rUO-UA4",
-    skills: ["Startup Project", "JavaScript", "React Native"],
-    description: "2nd Prize — Business Startup Competition 2019",
-  },
-  {
-    id: "unlimitedstudy",
-    title: "UnlimitedStudy",
-    period: {
-      start: "01.2017",
-      end: "08.2018",
-    },
-    link: "https://muctim.tuoitre.vn/cong-cu-ho-tro-viec-day-va-hoc-55107.htm",
-    skills: [
-      "National Competition",
-      "Creative Software",
-      "PHP",
-      "Laravel 4",
-      "MySQL",
-      "jQuery",
-      "Bootstrap 3",
-    ],
-    description: `UnlimitedStudy is a website that provides teaching and learning support tools for teachers and students.
-- 3rd Prize — National Science and Engineering Fair 2018 (ViSEF)
-- 1st Prize — Can Tho City Science and Engineering Fair 2018
-- 3rd Prize — National Young Informatics Contest 2018
-- 2nd Prize — Can Tho City Youth and Children’s Creativity Contest 2018
-- 3rd Prize — Can Tho City Young Informatics Contest 2018
-- Reached 7k+ users, mainly high school students in Can Tho City
-- Pilot implemented in high schools across Can Tho City with English quizzes, supervised by English subject specialists from the Can Tho City Department of Education and Training`,
-  },
-  {
-    id: "dmessage",
-    title: "DMessage",
-    period: {
-      start: "05.2017",
-      end: "05.2017",
-    },
-    link: "https://github.com/ncdai/DMessage",
-    skills: [
-      "Self-learning Project",
-      "Pet Project",
-      "Express.js",
-      "Socket.io",
-      "MongoDB",
-      "Mongoose ODM",
-    ],
-    description:
-      "A Messenger clone built to practice real-time communication using Socket.IO. This project showcases my self-learning journey in implementing WebSockets for instant messaging.",
-  },
-  {
-    id: "study-english",
-    title: "Study English",
-    period: {
-      start: "11.2016",
-      end: "12.2017",
-    },
-    link: "https://www.youtube.com/watch?v=OYgugvjqU4A",
-    skills: [
-      "National Competition",
-      "Creative Software",
-      "PHP",
-      "Laravel 4",
-      "MySQL",
-    ],
-    description: `Study English is a free, mobile-friendly website for high school English learning, offering vocabulary, quizzes, listening practice, and more.
-- Consolation Prize — National Youth and Children’s Creativity Contest 2016
-- 1st Prize — Can Tho City Youth and Children’s Creativity Contest 2016
-- Consolation Prize — Can Tho City Young Informatics Contest 2016`,
+    description: `A real-time RFID inventory and POS backend.
+- Cut label printing hardware cost by roughly 97% by mapping barcodes to RFID codes at print time.
+- Windows background agent reads an omnidirectional RFID reader over USB, filters noisy reads and batches stable tags before ingestion.
+`,
+    icon: <ScanBarcodeIcon />,
   },
 ]

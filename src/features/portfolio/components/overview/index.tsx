@@ -56,7 +56,9 @@ export function Overview() {
 
         <CurrentLocalTimeItem timeZone={USER.timeZone} />
 
-        <PhoneItem phoneNumberB64={USER.phoneNumberB64} />
+        {USER.phoneNumberB64 && (
+          <PhoneItem phoneNumberB64={USER.phoneNumberB64} />
+        )}
 
         <EmailItem emailB64={USER.emailB64} />
 
@@ -74,12 +76,14 @@ export function Overview() {
           </IntroItemContent>
         </IntroItem>
 
-        <IntroItem>
-          <IntroItemIcon>{getGenderIcon(USER.gender)}</IntroItemIcon>
-          <IntroItemContent aria-label={`Pronouns: ${USER.pronouns}`}>
-            {USER.pronouns}
-          </IntroItemContent>
-        </IntroItem>
+        {USER.gender && USER.pronouns && (
+          <IntroItem>
+            <IntroItemIcon>{getGenderIcon(USER.gender)}</IntroItemIcon>
+            <IntroItemContent aria-label={`Pronouns: ${USER.pronouns}`}>
+              {USER.pronouns}
+            </IntroItemContent>
+          </IntroItem>
+        )}
       </PanelContent>
 
       <div className="pointer-events-none absolute inset-y-0 left-1/2 -z-1 w-px -translate-x-2.25 border-r border-dashed border-line max-sm:hidden" />
@@ -87,7 +91,7 @@ export function Overview() {
   )
 }
 
-function getGenderIcon(gender: User["gender"]) {
+function getGenderIcon(gender: NonNullable<User["gender"]>) {
   switch (gender) {
     case "male":
       return <MarsIcon />

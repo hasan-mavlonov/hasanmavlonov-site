@@ -1,64 +1,53 @@
 import type { User } from "@/features/portfolio/types/user"
 
 export const USER: User = {
-  firstName: "Chánh Đại",
-  lastName: "Nguyễn",
-  displayName: "Chánh Đại",
-  username: "ncdai",
-  gender: "male",
-  pronouns: "he/him",
-  bio: "Creating with code. Small details matter.",
+  firstName: "Hasan",
+  lastName: "Mavlonov",
+  displayName: "Hasan Mavlonov",
+  username: "hasan-mavlonov",
+  bio: "AI and backend engineer. Shipping LLM pipelines that verify their own output.",
   flipSentences: [
-    "Creating with code. Small details matter.",
-    "Design Engineer.",
-    "Open source contributor.",
-    "I own a vintage iPhone.",
+    "AI and backend engineer.",
+    "B.Sc. in Artificial Intelligence at ECUST.",
+    "I build training pipelines that check their own work.",
+    "Django, FastAPI, PyTorch.",
   ],
-  address: "Ho Chi Minh City, Viet Nam",
-  phoneNumberB64: "Kzg0Nzc3ODg4MTQ4", // E.164 format, base64 encoded (https://t.io.vn/base64-string-converter)
-  emailB64: "ZGFpQGNoYW5oZGFpLmNvbQ==", // base64 encoded
-  website: "https://chanhdai.com",
-  jobTitle: "Design Engineer",
+  address: "Shanghai, China",
+  emailB64: "aGFzYW5AbWluZGZvcm0tYWkuY29t", // base64 encoded
+  website: "https://hasanmavlonov.com",
+  jobTitle: "AI/Backend Engineer",
   jobs: [
     {
-      title: "Design Engineer",
-      company: "shadcncraft",
-      website: "https://shadcncraft.com?atp=ncdai",
-      experienceId: "shadcncraft",
+      title: "AI/ML Engineer",
+      company: "EduX",
+      experienceId: "edux",
     },
     {
-      title: "Founder",
-      company: "Quaric",
-      website: "https://quaric.com",
-      experienceId: "quaric",
+      title: "B.Sc. Artificial Intelligence",
+      company: "ECUST",
+      experienceId: "ecust",
     },
   ],
-  about: `- I’m Chánh Đại (call me Dai) — a Design Engineer with 5+ years of experience, known for pixel-perfect execution and an obsessive attention to detail.
-- Passionate about exploring new technologies and turning ideas into reality through polished, thoughtfully crafted projects.
-- Creator of [chanhdai.com](https://github.com/ncdai/chanhdai.com) (2.2k stars), [React Wheel Picker](https://react-wheel-picker.chanhdai.com) (50k+ weekly downloads, ▲ Vercel OSS Program), and [ZaDark](https://zadark.com) (80k+ downloads, 30k+ users) — peak metrics.
+  about: `- I'm Hasan — an AI and backend engineer studying Artificial Intelligence at East China University of Science and Technology, in Shanghai.
+- I build the unglamorous half of machine learning: generation pipelines that verify their own output, evaluation harnesses written before there is a checkpoint to evaluate, and the gates that stop unverified data from reaching a training run.
+- Currently building the AI problem-generation pipeline at [EduX](#experience-edux), a government education platform serving 60,000+ registered students in Uzbek and Russian.
+- Author of [StableMind](https://doi.org/10.5281/zenodo.20593641), a preprint on a two-timescale architecture for persistent personality in LLM agents.
+- Before the AI work I shipped backends: Django REST Framework, FastAPI, PostgreSQL, and one RFID inventory system that cut label printing hardware cost by ~97%.
 `,
-  avatar: "https://assets.chanhdai.com/images/chanhdai-avatar-ghibli.webp",
-  avatarVariants: {
-    lightOff: "https://assets.chanhdai.com/images/avatar-light-off.webp",
-    lightOn: "https://assets.chanhdai.com/images/avatar-light-on.webp",
-    darkOff: "https://assets.chanhdai.com/images/avatar-dark-off.webp",
-    darkOn: "https://assets.chanhdai.com/images/avatar-dark-on.webp",
-  },
+  avatar: "/monogram.svg",
   ogImage:
-    "https://assets.chanhdai.com/images/screenshot-og-image-dark.png?t=1778602757",
-  namePronunciationUrl: "https://assets.chanhdai.com/audio/chanhdai.mp3",
-  timeZone: "Asia/Ho_Chi_Minh",
+    "/og/simple?title=Hasan%20Mavlonov&description=AI%2FBackend%20Engineer",
   keywords: [
-    "ncdai",
-    "nguyenchanhdai",
-    "nguyen chanh dai",
-    "chanhdai",
-    "chanh dai",
-    "iamncdai",
-    "quaric",
-    "zadark",
-    "nguyễn chánh đại",
-    "chánh đại",
+    "hasan mavlonov",
+    "hasanmavlonov",
+    "hasan-mavlonov",
+    "mavlonov",
+    "ai engineer",
+    "backend engineer",
+    "machine learning engineer",
+    "ecust",
+    "shanghai",
   ],
-  dateCreated: "2023-10-20", // YYYY-MM-DD
+  timeZone: "Asia/Shanghai",
+  dateCreated: "2026-09-13", // YYYY-MM-DD
 }

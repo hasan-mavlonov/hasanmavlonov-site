@@ -7,7 +7,7 @@ import { NuqsAdapter } from "nuqs/adapters/next/app"
 import type { WebSite, WithContext } from "schema-dts"
 
 import { JSON_LD_ID, personJsonLd } from "@/config/json-ld"
-import { META_THEME_COLORS, SITE_INFO, X_HANDLE } from "@/config/site"
+import { META_THEME_COLORS, SITE_INFO } from "@/config/site"
 import { fontVariables } from "@/lib/fonts"
 import { JsonLdScript } from "@/lib/json-ld"
 import { Providers } from "@/components/providers"
@@ -49,11 +49,11 @@ export const metadata: Metadata = {
   keywords: SITE_INFO.keywords,
   authors: [
     {
-      name: "ncdai",
+      name: USER.displayName,
       url: SITE_INFO.url,
     },
   ],
-  creator: "ncdai",
+  creator: USER.displayName,
   openGraph: {
     siteName: SITE_INFO.name,
     url: "/",
@@ -74,33 +74,25 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: X_HANDLE,
-    creator: X_HANDLE,
     images: [SITE_INFO.ogImage],
   },
   icons: {
     icon: [
       {
-        url: "https://assets.chanhdai.com/images/favicon.ico",
-        sizes: "32x32",
-      },
-      {
-        url: "https://assets.chanhdai.com/images/favicon.svg",
+        url: "/monogram.svg",
         sizes: "any",
         type: "image/svg+xml",
-        media: "(prefers-color-scheme: light)",
       },
       {
-        url: "https://assets.chanhdai.com/images/favicon-dark.svg",
-        sizes: "any",
-        type: "image/svg+xml",
-        media: "(prefers-color-scheme: dark)",
+        url: "/favicon.png",
+        sizes: "64x64",
+        type: "image/png",
       },
     ],
     apple: {
-      url: "https://assets.chanhdai.com/images/apple-touch-icon.png",
+      url: "/icon-192x192.png",
       type: "image/png",
-      sizes: "180x180",
+      sizes: "192x192",
     },
   },
 }

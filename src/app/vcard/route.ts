@@ -14,10 +14,13 @@ export async function GET() {
 
   card
     .addName(USER.lastName, USER.firstName)
-    .addPhoneNumber(decodePhoneNumber(USER.phoneNumberB64))
     .addAddress(USER.address)
     .addEmail(decodeEmail(USER.emailB64))
     .addURL(USER.website)
+
+  if (USER.phoneNumberB64) {
+    card.addPhoneNumber(decodePhoneNumber(USER.phoneNumberB64))
+  }
 
   const photo = await getVCardPhoto(USER.avatar)
   if (photo) {

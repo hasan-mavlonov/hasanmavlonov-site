@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="HM">
+  <style>
+    .mark { fill: #09090b }
+    @media (prefers-color-scheme: dark) {
+      .mark { fill: #fafafa }
+    }
+  </style>
+  <g transform="translate(72 164) scale(0.822)">
+    <path class="mark" d="M0 0h56v256H0zM56 100h56v56H56zM112 0h56v256h-56zM224 0h56l56 120 56-120h56v256h-56V96l-36 84h-40l-36-84v160h-56z"/>
+  </g>
+</svg>

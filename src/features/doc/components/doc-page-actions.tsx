@@ -7,6 +7,7 @@ import { useTiks } from "@rexa-developer/tiks/react"
 import { IconCheck, IconCopy, IconX } from "@tabler/icons-react"
 import { ChevronDownIcon } from "lucide-react"
 
+import { SOURCE_CODE_GITHUB_URL } from "@/config/site"
 import type { CopyState } from "@/hooks/use-copy-to-clipboard"
 import { Button } from "@/components/base/ui/button"
 import {
@@ -134,7 +135,7 @@ export function ViewOptions({
       {
         title: "Open in GitHub",
         // Source files remain .mdx even though the public URL uses .md
-        href: `https://github.com/ncdai/chanhdai.com/blob/main/src/features/doc/content/${markdownUrl.replace(/^\//, "").replace(/\.md$/, ".mdx")}`,
+        href: `${SOURCE_CODE_GITHUB_URL}/blob/main/src/features/doc/content/${markdownUrl.replace(/^\//, "").replace(/\.md$/, ".mdx")}`,
         icon: GitHubIcon,
       },
       {

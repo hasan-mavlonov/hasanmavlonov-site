@@ -13,7 +13,8 @@ import {
 type JobItemProps = {
   title: string
   company: string
-  website: string
+  /** Omitted when `experienceId` points at an on-page section instead. */
+  website?: string
   experienceId?: string
 }
 
@@ -38,7 +39,7 @@ export function JobItem({
                 rel: "",
               }
             : {
-                href: addQueryParams(website, UTM_PARAMS),
+                href: website ? addQueryParams(website, UTM_PARAMS) : "",
               })}
         >
           {company}

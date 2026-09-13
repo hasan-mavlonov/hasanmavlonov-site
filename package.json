@@ -1,13 +1,13 @@
 {
-  "name": "chanhdai.com",
+  "name": "hasanmavlonov.com",
   "version": "0.1.0",
   "description": "A personal portfolio and blog website.",
-  "homepage": "https://chanhdai.com",
+  "homepage": "https://hasanmavlonov.com",
   "license": "MIT",
   "author": {
-    "name": "Nguyen Chanh Dai",
-    "email": "dai@chanhdai.com",
-    "url": "https://github.com/ncdai"
+    "name": "Hasan Mavlonov",
+    "email": "hasan@mindform-ai.com",
+    "url": "https://github.com/hasan-mavlonov"
   },
   "contributors": [
     {
@@ -18,7 +18,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ncdai/chanhdai.com.git"
+    "url": "git+https://github.com/hasan-mavlonov/hasanmavlonov-site.git"
   },
   "scripts": {
     "dev": "next dev",
