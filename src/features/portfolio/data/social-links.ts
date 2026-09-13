@@ -18,6 +18,12 @@ export const SOCIAL = {
     href: "https://x.com/HasanMavlonovX",
     sameAs: true,
   },
+  instagram: {
+    title: "Instagram",
+    handle: "@hasanmavlonov_",
+    href: "https://www.instagram.com/hasanmavlonov_/",
+    sameAs: true,
+  },
   huggingface: {
     title: "Hugging Face",
     handle: "hasanmavlonov",
