@@ -28,7 +28,7 @@ export function CodeCollapsibleWrapper({
         <CollapsibleTrigger
           render={
             <Button
-              className="z-1 shadow-none dark:border-border dark:bg-background dark:hover:bg-zinc-900"
+              className="z-1 shadow-none dark:border-border dark:bg-background"
               variant="outline"
               size="sm"
             >

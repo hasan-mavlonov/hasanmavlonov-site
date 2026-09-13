@@ -30,8 +30,7 @@ export function InsightsChart({
         <LineChart
           className={cn(
             "sm:aspect-3/1!",
-            "[--chart-1:var(--color-zinc-900)] [--chart-2:var(--color-zinc-400)]",
-            "dark:[--chart-1:var(--color-zinc-100)] dark:[--chart-2:var(--color-zinc-600)]"
+            "[--chart-1:var(--color-foreground)] [--chart-2:var(--color-muted-foreground)]"
           )}
           data={series}
           margin={{ top: 16, right: 32, bottom: 40, left: 32 }}

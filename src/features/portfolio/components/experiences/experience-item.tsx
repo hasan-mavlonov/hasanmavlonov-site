@@ -27,7 +27,7 @@ export function ExperienceItem({ experience }: { experience: Experience }) {
             />
           ) : (
             (experience.companyIcon ?? (
-              <span className="flex size-2 rounded-full bg-zinc-300 dark:bg-zinc-600" />
+              <span className="flex size-2 bg-muted-foreground" />
             ))
           )}
         </div>

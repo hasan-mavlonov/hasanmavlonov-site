@@ -92,7 +92,9 @@ export function SiteFooterCad() {
               </a>
             </Field>
 
-            <Field label="Typeface">Geist</Field>
+            <Field label="Typeface">
+              Archivo, IBM Plex Sans, IBM Plex Mono
+            </Field>
 
             <Field className="col-span-2" label="Stack">
               <ul className="flex flex-col gap-0.5">

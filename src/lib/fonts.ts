@@ -1,51 +1,32 @@
-import { Caveat, IBM_Plex_Serif } from "next/font/google"
-import { GeistMono } from "geist/font/mono"
-import { GeistSans } from "geist/font/sans"
+import { Archivo, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google"
 
 import { cn } from "@/lib/utils"
 
-const fontSans = GeistSans
-const fontMono = GeistMono
-
-const fontSerif = IBM_Plex_Serif({
-  weight: ["400"],
+// Three families, one voice: Archivo for display, IBM Plex Sans for body,
+// IBM Plex Mono for labels and data. The variable names are what
+// globals.css's @theme block reads, so they must stay in sync.
+const fontDisplay = Archivo({
+  subsets: ["latin", "latin-ext"],
   display: "swap",
-  variable: "--font-serif",
+  variable: "--font-display",
 })
 
-const fontHandwritten = Caveat({
-  weight: ["400", "500"],
+const fontSans = IBM_Plex_Sans({
+  subsets: ["latin", "latin-ext"],
   display: "swap",
-  variable: "--font-handwritten",
+  variable: "--font-sans",
 })
 
-// const fontPixel = localFont({
-//   src: "../assets/fonts/DepartureMono-Regular.woff2",
-//   weight: "400",
-//   fallback: ["monospace"],
-//   variable: "--font-pixel",
-// })
-
-// const pixelatedMSSansSerif = localFont({
-//   src: [
-//     {
-//       path: "../assets/fonts/ms_sans_serif.woff2",
-//       weight: "400",
-//     },
-//     {
-//       path: "../assets/fonts/ms_sans_serif_bold.woff2",
-//       weight: "700",
-//     },
-//   ],
-//   fallback: ["Arial"],
-//   variable: "--font-98cn",
-// })
+// Plex Mono ships static weights only, so next/font needs them listed.
+const fontMono = IBM_Plex_Mono({
+  weight: ["400", "500", "600"],
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+  variable: "--font-mono",
+})
 
 export const fontVariables = cn(
+  fontDisplay.variable,
   fontSans.variable,
-  fontMono.variable,
-  fontSerif.variable,
-  fontHandwritten.variable,
-  "[--font-sans:var(--font-geist-sans)]",
-  "[--font-mono:var(--font-geist-mono)]"
+  fontMono.variable
 )
