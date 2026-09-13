@@ -1,6 +1,6 @@
 # [hasanmavlonov.com](https://hasanmavlonov.com)
 
-A personal portfolio and blog for Hasan Mavlonov, AI and backend engineer.
+A personal portfolio and blog for Hasan Mavlonov, CTO and co-founder of MindForm AI.
 
 → Live site: [hasanmavlonov.com](https://hasanmavlonov.com)
 

@@ -35,14 +35,4 @@ export const EDUCATION: Education[] = [
     description: `- Built an EfficientNetB0-based CNN for binary classification of breast cancer histopathology images (BreaKHis 400x), achieving robust feature extraction on high-resolution medical data.`,
     skills: ["Python", "TensorFlow", "EfficientNet", "SHAP", "Medical Imaging"],
   },
-  {
-    id: "uw-madison",
-    school: "University of Wisconsin-Madison",
-    fieldOfStudy: "STEAM Program",
-    period: {
-      start: "2024",
-      end: "2024",
-    },
-    description: `- Interdisciplinary STEAM coursework spanning science, technology, engineering, arts and mathematics.`,
-  },
 ]
