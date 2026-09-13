@@ -33,10 +33,7 @@ export const USER: User = {
       experienceId: "ecust",
     },
   ],
-  about: `- I'm Hasan, CTO and co-founder of [MindForm AI](https://mindform-ai.com). We integrate personality into AI. Backed by NVIDIA Inception.
-- I'm also CTO at [Defex](https://defex.app), where self-teaching robots attempt an assembly, physically test the joint and learn from the result. Backed by Google for Startups and Z Fellows.
-- Author of a nine-paper preprint series on MindForm's architecture, published through the mindform-ai research community on Zenodo.
-- B.Sc. Artificial Intelligence @ ECUST. Presented an AI-powered student platform to Ren Youqun, a Vice Minister of the Ministry of Education of China.
+  about: `I'm Hasan. I'm CTO and co-founder of [MindForm AI](https://mindform-ai.com), where we integrate personality into AI, and CTO at [Defex](https://defex.app), building self-teaching assembly robots.
 `,
   avatar: "/monogram.svg",
   photo: "/hasan-mavlonov.jpg",

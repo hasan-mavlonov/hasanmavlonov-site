@@ -1,4 +1,3 @@
-import { differenceInMonths, parse } from "date-fns"
 import { BriefcaseBusinessIcon, InfinityIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
@@ -23,7 +22,6 @@ export function ExperiencePositionItem({
 }) {
   const { start, end } = position.employmentPeriod
   const isOngoing = !end
-  const duration = formatDuration(start, end)
 
   return (
     <Collapsible
@@ -53,14 +51,11 @@ export function ExperiencePositionItem({
           </div>
         </div>
 
-        {/* Separators are aria-hidden: a dl may only expose dt/dd groups, and these dividers are decorative. */}
-        <dl className="flex items-center gap-2 pl-9 text-sm text-muted-foreground">
+        {/* Separator is aria-hidden: the divider is decorative. */}
+        <div className="flex items-center gap-2 pl-9 text-sm text-muted-foreground">
           {position.employmentType && (
             <>
-              <div>
-                <dt className="sr-only">Employment Type</dt>
-                <dd>{position.employmentType}</dd>
-              </div>
+              <span>{position.employmentType}</span>
               <Separator
                 className="data-vertical:h-4 data-vertical:self-center"
                 orientation="vertical"
@@ -69,37 +64,20 @@ export function ExperiencePositionItem({
             </>
           )}
 
-          <div>
-            <dt className="sr-only">Employment Period</dt>
-            <dd className="flex items-center gap-0.5 tabular-nums">
-              <span>{start}</span>
-              <span className="font-mono">—</span>
-              {isOngoing ? (
-                <InfinityIcon
-                  className="size-4.5 translate-y-[0.5px]"
-                  aria-label="Present"
-                  strokeWidth={1.5}
-                />
-              ) : (
-                <span>{end}</span>
-              )}
-            </dd>
-          </div>
-
-          {duration && (
-            <>
-              <Separator
-                className="data-vertical:h-4 data-vertical:self-center"
-                orientation="vertical"
-                aria-hidden
+          <span className="flex items-center gap-0.5 tabular-nums">
+            <span>{start}</span>
+            <span className="font-mono">—</span>
+            {isOngoing ? (
+              <InfinityIcon
+                className="size-4.5 translate-y-[0.5px]"
+                aria-label="Present"
+                strokeWidth={1.5}
               />
-              <div>
-                <dt className="sr-only">Duration</dt>
-                <dd className="tabular-nums">{duration}</dd>
-              </div>
-            </>
-          )}
-        </dl>
+            ) : (
+              <span>{end}</span>
+            )}
+          </span>
+        </div>
       </CollapsibleTrigger>
 
       <CollapsibleContent className="overflow-hidden">
@@ -120,50 +98,5 @@ export function ExperiencePositionItem({
         </ul>
       )}
     </Collapsible>
-  )
-}
-
-function formatDuration(start: string, end?: string): string {
-  const startHasMonth = start.includes(".")
-  const endHasMonth = end ? end.includes(".") : true
-
-  // Both year-only: granularity is years, no month arithmetic needed.
-  if (!startHasMonth && end && !endHasMonth) {
-    const years = parseInt(end, 10) - parseInt(start, 10)
-    if (years <= 0) {
-      return ""
-    }
-    return `${years}y`
-  }
-
-  const startDate = parsePeriodDate(start, "first")
-  const endDate = end ? parsePeriodDate(end, "last") : new Date()
-
-  // +1 to count both the start and end months inclusively.
-  const totalMonths = differenceInMonths(endDate, startDate) + 1
-  if (totalMonths <= 0) {
-    return ""
-  }
-
-  if (totalMonths < 12) {
-    return `${totalMonths}m`
-  }
-
-  const years = Math.floor(totalMonths / 12)
-  const months = totalMonths % 12
-  if (months === 0) {
-    return `${years}y`
-  }
-  return `${years}y ${months}m`
-}
-
-function parsePeriodDate(str: string, fallbackMonth: "first" | "last"): Date {
-  if (str.includes(".")) {
-    return parse(str, "MM.yyyy", new Date())
-  }
-  return parse(
-    `${fallbackMonth === "last" ? "12" : "01"}.${str}`,
-    "MM.yyyy",
-    new Date()
   )
 }

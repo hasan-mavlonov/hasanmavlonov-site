@@ -32,12 +32,12 @@ Mentored 250+ developers at Google DevFest '25 and Build With AI '25 in Shanghai
 
 Joined Defex as CTO in March: self-teaching assembly robots for manufacturing, backed by NVIDIA Inception, Google for Startups and Z Fellows.
 
-Published StableMind, a preprint on a two-timescale architecture for persistent personality in LLM agents, endorsed for arXiv submission.
+Published StableMind, a preprint on a two-timescale architecture for persistent personality in LLM agents.
 
 Recognized in the 2026 Shanghai University Computer Application Competition for an AI-powered ancient engineering simulation system.
 
 Reached the semifinals of the Google Gemma 4 Competition.
 
-Presented an AI-powered student profile platform to Ren Youqun, Vice Minister of the Ministry of Education of China.`,
+Built an AI-powered student profile platform, and presented it to Ren Youqun, a Vice Minister of the Ministry of Education of China.`,
   },
 ]

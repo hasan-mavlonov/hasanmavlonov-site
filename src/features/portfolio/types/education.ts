@@ -3,7 +3,7 @@ export type Education = {
   school: string
   degree?: string
   fieldOfStudy?: string
-  period: {
+  period?: {
     start: string
     end?: string
   }

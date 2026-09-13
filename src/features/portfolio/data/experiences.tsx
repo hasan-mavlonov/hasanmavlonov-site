@@ -6,7 +6,6 @@ export const EXPERIENCES: Experience[] = [
   {
     id: "mindform-ai",
     companyName: "MindForm AI",
-    location: "Shanghai, China",
     positions: [
       {
         id: "mindform-ai-cto",
@@ -15,7 +14,7 @@ export const EXPERIENCES: Experience[] = [
           start: "01.2026",
         },
         icon: <BrainCircuitIcon />,
-        description: `We integrate personality into AI. Backed by NVIDIA Inception.`,
+        description: `Building StableMind, the persistence layer that gives an agent a measurable Big Five identity it keeps across sessions, models and restarts. Backed by NVIDIA Inception.`,
         skills: ["AI agents", "Personality modelling", "Infrastructure"],
         isExpanded: true,
       },
@@ -36,7 +35,7 @@ export const EXPERIENCES: Experience[] = [
           start: "03.2026",
         },
         icon: <BotIcon />,
-        description: `Self-teaching assembly robots for manufacturing. Backed by Google for Startups and Z Fellows.`,
+        description: `Self-teaching assembly robots for manufacturing: a robot attempts an assembly, physically tests the joint and learns from the result. Backed by Google for Startups and Z Fellows.`,
         skills: ["Robotics", "Reinforcement learning", "Manufacturing"],
         isExpanded: true,
       },
@@ -46,7 +45,6 @@ export const EXPERIENCES: Experience[] = [
   {
     id: "elev8",
     companyName: "Elev8",
-    location: "Shanghai, China",
     positions: [
       {
         id: "elev8-ai-engineer-intern",

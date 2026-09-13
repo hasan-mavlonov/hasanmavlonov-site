@@ -1,114 +1,39 @@
 import { format } from "date-fns"
-import { Crown, Paperclip } from "lucide-react"
+import { Crown } from "lucide-react"
 
 import { IconTile } from "@/components/ui/icon-tile"
-import {
-  Collapsible,
-  CollapsibleChevronsUpDownIcon,
-} from "@/components/base/collapsible-animated"
-import {
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/base/ui/collapsible"
-import { Separator } from "@/components/base/ui/separator"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/base/ui/tooltip"
-import { Markdown } from "@/components/markdown"
 import type { Award } from "@/features/portfolio/types/awards"
 
-export function AwardItem({
-  className,
-  award,
-}: {
-  className?: string
-  award: Award
-}) {
-  const canExpand = !!award.description
-
+/** One row: what it was, how it went, and when. */
+export function AwardItem({ award }: { award: Award }) {
   return (
-    <Collapsible className={className} disabled={!canExpand}>
-      <CollapsibleTrigger className="flex w-full items-center text-left hover:bg-accent-muted">
-        <IconTile className="mx-4">{award.icon ?? <Crown />}</IconTile>
+    <div className="flex w-full items-center">
+      <IconTile className="mx-4">{award.icon ?? <Crown />}</IconTile>
 
-        <div className="flex flex-1 items-center gap-2 border-l border-dashed border-line p-4 pr-2">
-          <div className="flex-1">
-            <h3 className="mb-1 leading-snug font-medium text-balance">
+      <div className="flex flex-1 flex-wrap items-baseline gap-x-3 gap-y-1 border-l border-dashed border-line p-4 pr-2">
+        <h3 className="flex-1 leading-snug font-medium text-balance">
+          {award.referenceLink ? (
+            <a
+              className="link"
+              href={award.referenceLink}
+              target="_blank"
+              rel="noopener"
+            >
               {award.title}
-            </h3>
-
-            <dl className="flex flex-wrap items-center gap-x-2 text-sm text-muted-foreground">
-              <div>
-                <dt className="sr-only">Prize</dt>
-                <dd>{award.prize}</dd>
-              </div>
-
-              <Separator
-                className="data-vertical:h-4 data-vertical:self-center"
-                orientation="vertical"
-                aria-hidden
-              />
-
-              <div>
-                <dt className="sr-only">Awarded in</dt>
-                <dd>
-                  <time dateTime={new Date(award.date).toISOString()}>
-                    {format(new Date(award.date), "MM.yyyy")}
-                  </time>
-                </dd>
-              </div>
-
-              <Separator
-                className="data-vertical:h-4 data-vertical:self-center"
-                orientation="vertical"
-                aria-hidden
-              />
-
-              <div>
-                <dt className="sr-only">Received in Grade</dt>
-                <dd>{award.grade}</dd>
-              </div>
-            </dl>
-          </div>
-
-          {award.referenceLink && (
-            <Tooltip>
-              <TooltipTrigger
-                render={
-                  <a
-                    className="relative flex size-6 shrink-0 items-center justify-center text-muted-foreground after:absolute after:-inset-2 hover:text-foreground [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4"
-                    href={award.referenceLink}
-                    target="_blank"
-                    rel="noopener"
-                    aria-label="Open reference attachment"
-                  >
-                    <Paperclip />
-                  </a>
-                }
-              />
-              <TooltipContent>
-                <p>Open reference attachment</p>
-              </TooltipContent>
-            </Tooltip>
+            </a>
+          ) : (
+            award.title
           )}
+        </h3>
 
-          {canExpand && (
-            <div className="shrink-0 text-muted-foreground [&_svg]:size-4">
-              <CollapsibleChevronsUpDownIcon duration={0.15} />
-            </div>
-          )}
-        </div>
-      </CollapsibleTrigger>
+        <p className="text-sm text-muted-foreground">{award.prize}</p>
 
-      {canExpand && (
-        <CollapsibleContent className="overflow-hidden">
-          <div className="typeset typeset-description border-t border-line p-4">
-            <Markdown>{award.description}</Markdown>
-          </div>
-        </CollapsibleContent>
-      )}
-    </Collapsible>
+        <p className="w-10 text-right text-sm text-muted-foreground tabular-nums">
+          <time dateTime={new Date(award.date).toISOString()}>
+            {format(new Date(award.date), "yyyy")}
+          </time>
+        </p>
+      </div>
+    </div>
   )
 }
