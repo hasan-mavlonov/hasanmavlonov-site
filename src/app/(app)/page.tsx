@@ -8,7 +8,6 @@ import { absoluteUrl, cn } from "@/lib/utils"
 import { getBlogPosts } from "@/features/doc/data/documents"
 import { Awards } from "@/features/portfolio/components/awards"
 import { Blog } from "@/features/portfolio/components/blog"
-import { Certifications } from "@/features/portfolio/components/certifications"
 import { Education } from "@/features/portfolio/components/education"
 import { Experiences } from "@/features/portfolio/components/experiences"
 import { Hello } from "@/features/portfolio/components/hello"
@@ -16,7 +15,6 @@ import {
   Insights,
   InsightsSkeleton,
 } from "@/features/portfolio/components/insights"
-import { IntellectualProperty } from "@/features/portfolio/components/intellectual-property"
 import { Overview } from "@/features/portfolio/components/overview"
 import { ProfileHeader } from "@/features/portfolio/components/profile-header"
 import { Projects } from "@/features/portfolio/components/projects"
@@ -70,12 +68,6 @@ export default function HomePage() {
           <Separator />
 
           <Awards />
-          <Separator />
-
-          <Certifications />
-          <Separator />
-
-          <IntellectualProperty />
           <Separator />
 
           <Suspense fallback={<InsightsSkeleton />}>

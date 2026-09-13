@@ -5,25 +5,16 @@ import type { BuildInfo } from "@/lib/build-info"
 import { getBuildInfo, getStack } from "@/lib/build-info"
 import { cn } from "@/lib/utils"
 import { Separator } from "@/components/base/ui/separator"
-import { DmcaIcon, GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons"
+import { DmcaIcon, GitHubIcon, LinkedInIcon } from "@/components/icons"
 import { SiteFooterInteractiveLogotype } from "@/components/site-footer-brand"
 import { SOCIAL } from "@/features/portfolio/data/social-links"
 
 // Imported here rather than through `@/config/site`, which client components
 // pull in, to keep the manifest out of client bundles.
 import packageJson from "../../package.json"
-import { ChanhDaiMark } from "./chanhdai-mark"
+import { BrandMark } from "./brand-mark"
 
-const INSPIRED_BY = [
-  "Tailwind CSS",
-  "shadcn/ui",
-  "Vercel",
-  "Evil Charts",
-  "Devouring Details",
-  "Skiper UI",
-  "Making Software",
-  "shadcncraft",
-]
+const INSPIRED_BY = ["chanhdai.com", "Next.js", "Tailwind CSS", "shadcn/ui"]
 
 const OPENPANEL_URL =
   "https://openpanel.dev?utm_source=hasanmavlonov.com&utm_medium=referral&utm_campaign=footer"
@@ -36,7 +27,6 @@ const SITE_SUBTITLE = packageJson.description
 
 /** Footer laid out as the title block of a technical drawing. */
 export function SiteFooterCad() {
-  const xLink = SOCIAL.x
   const githubLink = SOCIAL.github
   const linkedinLink = SOCIAL.linkedin
 
@@ -62,11 +52,11 @@ export function SiteFooterCad() {
             <Field label="Crafted by">
               <a
                 className="link-underline"
-                href={xLink.href}
+                href={githubLink.href}
                 target="_blank"
                 rel="noopener"
               >
-                {xLink.handle}
+                {githubLink.handle}
               </a>
             </Field>
 
@@ -160,23 +150,8 @@ export function SiteFooterCad() {
             className="mr-auto text-muted-foreground transition-[color] hover:text-foreground"
             aria-label="Home"
           >
-            <ChanhDaiMark className="h-4" />
+            <BrandMark className="h-4" />
           </Link>
-
-          <a
-            className="flex items-center transition-[color] hover:text-foreground"
-            href={xLink.href}
-            target="_blank"
-            rel="noopener"
-            aria-label="X Profile"
-          >
-            <XIcon className="size-4" />
-          </a>
-
-          <Separator
-            orientation="vertical"
-            className="data-vertical:h-4 data-vertical:self-center"
-          />
 
           <a
             className="flex items-center transition-[color] hover:text-foreground"
@@ -223,7 +198,7 @@ export function SiteFooterCad() {
         </div>
       </div>
 
-      <SiteFooterInteractiveLogotype />
+      <SiteFooterInteractiveLogotype text={SITE_TITLE} />
 
       <div className="h-(--fade-bottom-height)" />
       <div className="pb-[env(safe-area-inset-bottom,0)]" />
