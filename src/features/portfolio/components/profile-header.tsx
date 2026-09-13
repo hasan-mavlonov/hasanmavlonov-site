@@ -1,8 +1,8 @@
-import { BrandMark } from "@/components/brand-mark"
 import { USER } from "@/features/portfolio/data/user"
 
 import { Avatar } from "./avatar"
 import { FlipSentences } from "./flip-sentences"
+import { IsometricMonogram } from "./isometric-monogram"
 import { PronounceMyName } from "./pronounce-my-name"
 
 const INITIALS = `${USER.firstName.at(0) ?? ""}${USER.lastName.at(0) ?? ""}`
@@ -11,7 +11,7 @@ export function ProfileHeader() {
   return (
     <div className="screen-line-bottom grid grid-cols-[auto_1fr] grid-rows-[1fr_auto] overflow-y-clip border-x screen-line-bottom-border after:z-1">
       <figure className="relative col-span-2 flex items-center justify-center p-2 sm:col-span-1 sm:col-start-2 sm:p-4">
-        <BrandMark className="h-16 w-auto text-foreground/10 sm:h-24" />
+        <IsometricMonogram className="h-24 w-auto sm:h-36" />
 
         <figcaption className="pointer-events-none absolute right-2 bottom-2 text-sm leading-none tracking-wide text-[color-mix(in_oklab,var(--muted-foreground)_60%,var(--background))] tabular-nums select-none sm:right-4 sm:bottom-4">
           Fig. 1.
