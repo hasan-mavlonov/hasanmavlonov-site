@@ -22,9 +22,9 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "preview": "next build && next start",
+    "build": "next build && node scripts/finalize-export.mjs",
+    "start": "npx --yes serve@14 out",
+    "preview": "npm run build && npm start",
     "test": "vitest",
     "test:run": "vitest run",
     "lint": "eslint . --cache --cache-location .eslintcache",

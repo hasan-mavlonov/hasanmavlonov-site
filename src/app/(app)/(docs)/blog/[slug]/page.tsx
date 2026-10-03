@@ -6,6 +6,7 @@ import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react"
 import type { BlogPosting as PageSchema, WithContext } from "schema-dts"
 
 import { JSON_LD_ID } from "@/config/json-ld"
+import { getBlogPostOgImageId, getOgImageUrl } from "@/config/og-images"
 import { jsonLdBreadcrumbList, JsonLdScript } from "@/lib/json-ld"
 import { absoluteUrl } from "@/lib/utils"
 import { Kbd } from "@/components/ui/kbd"
@@ -35,6 +36,7 @@ import {
   getBlogPosts,
   getDocBySlug,
 } from "@/features/doc/data/documents"
+import { withPlaceholderSlug } from "@/features/doc/lib/static-params"
 import type { Doc } from "@/features/doc/types/document"
 
 export const revalidate = false
@@ -43,7 +45,7 @@ export const dynamicParams = false
 
 export async function generateStaticParams() {
   const docs = getBlogPosts()
-  return docs.map((doc) => ({ slug: doc.slug }))
+  return withPlaceholderSlug(docs.map((doc) => ({ slug: doc.slug })))
 }
 
 export async function generateMetadata({
@@ -59,9 +61,7 @@ export async function generateMetadata({
   const { title, description, image, createdAt, updatedAt } = doc.metadata
 
   const postUrl = `/blog/${doc.slug}`
-  const ogImage =
-    image ||
-    `/og/simple?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`
+  const ogImage = image || getOgImageUrl(getBlogPostOgImageId(doc.slug))
 
   return {
     title,
@@ -99,9 +99,7 @@ function getPageJsonLd(doc: Doc): WithContext<PageSchema> {
     description: doc.metadata.description,
     image:
       doc.metadata.image ||
-      absoluteUrl(
-        `/og/simple?title=${encodeURIComponent(doc.metadata.title)}&description=${encodeURIComponent(doc.metadata.description)}`
-      ),
+      absoluteUrl(getOgImageUrl(getBlogPostOgImageId(doc.slug))),
     url: absoluteUrl(postUrl),
     datePublished: new Date(doc.metadata.createdAt).toISOString(),
     dateModified: new Date(doc.metadata.updatedAt).toISOString(),

@@ -2,6 +2,7 @@ import { Suspense } from "react"
 import type { Metadata } from "next"
 import { differenceInCalendarDays, parseISO } from "date-fns"
 
+import { getOgImageUrl, PAGE_OG_IMAGES } from "@/config/og-images"
 import { jsonLdBreadcrumbList, JsonLdScript } from "@/lib/json-ld"
 import {
   PageHeading,
@@ -19,11 +20,9 @@ import {
 } from "@/features/portfolio/components/insights/insights-metrics"
 import { getInsights } from "@/features/portfolio/data/insights"
 
-const title = "Insights"
-const description =
-  "The code is public, and so are the numbers. Visitors, sessions, and views, compared with the previous period."
+const { title, description } = PAGE_OG_IMAGES.insights
 
-const ogImage = `/og/simple?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`
+const ogImage = getOgImageUrl("insights")
 
 export const metadata: Metadata = {
   title,

@@ -59,7 +59,7 @@ peer on zod 4 while this app pins zod 3 for its own schemas.
 npm install        # Install dependencies
 npm run dev        # Dev server
 npm run build      # Production build
-npm start          # Serve the production build (honours PORT)
+npm start          # Serve the static export in out/ (honours PORT)
 npm test           # Vitest (watch)
 npm run test:run   # Vitest (single run)
 npm run lint       # ESLint
@@ -73,9 +73,13 @@ into `.next/types/`, so run a build first on a fresh checkout.
 
 ## Deployment
 
-Render web service, described by `render.yaml` (`npm ci --include=dev &&
-npm run build`, then `npm start`). Dev dependencies are required at build time,
-so do not set `NODE_ENV=production` for the build step.
+Render Static Site, described by `render.yaml` (`npm ci --include=dev &&
+npm run build`, publish directory `out`). `next.config.ts` sets
+`output: "export"`, so nothing may depend on a request at runtime: no route
+handlers that read the request, no server actions, no `redirects`/`rewrites`
+in `next.config.ts` (use `render.yaml` or `scripts/finalize-export.mjs`), and
+every dynamic route needs `generateStaticParams`. Dev dependencies are required
+at build time, so do not set `NODE_ENV=production` for the build step.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

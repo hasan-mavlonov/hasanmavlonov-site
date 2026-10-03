@@ -8,12 +8,13 @@ export const dynamic = "force-static"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = getBlogPosts().map((post) => ({
-    url: `${SITE_INFO.url}/blog/${post.slug}`,
+    url: `${SITE_INFO.url}/blog/${post.slug}/`,
     lastModified: new Date(post.metadata.updatedAt).toISOString(),
   }))
 
+  // Trailing slashes match the canonical URLs `trailingSlash: true` produces.
   const routes = ["", "/blog", "/insights", "/timeline"].map((route) => ({
-    url: `${SITE_INFO.url}${route}`,
+    url: `${SITE_INFO.url}${route}/`,
     lastModified: new Date().toISOString(),
   }))
 

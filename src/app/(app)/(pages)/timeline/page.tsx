@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 
+import { getOgImageUrl, PAGE_OG_IMAGES } from "@/config/og-images"
 import { jsonLdBreadcrumbList, JsonLdScript } from "@/lib/json-ld"
 import {
   PageHeading,
@@ -9,10 +10,9 @@ import {
 import { TimescaleIntroScroll } from "@/components/timescale"
 import { Timeline } from "@/features/portfolio/components/timeline"
 
-const title = "Timeline"
-const description = "A life in milestones."
+const { title, description } = PAGE_OG_IMAGES.timeline
 
-const ogImage = `/og/simple?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`
+const ogImage = getOgImageUrl("timeline")
 
 export const metadata: Metadata = {
   title,

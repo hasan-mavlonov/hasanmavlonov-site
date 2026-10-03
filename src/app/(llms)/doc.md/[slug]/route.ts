@@ -2,6 +2,7 @@ import { notFound } from "next/navigation"
 
 import { getAllDocs } from "@/features/doc/data/documents"
 import { getLLMText } from "@/features/doc/lib/get-llm-text"
+import { withPlaceholderSlug } from "@/features/doc/lib/static-params"
 
 export const revalidate = false
 export const dynamic = "force-static"
@@ -10,9 +11,11 @@ export const dynamicParams = false
 export async function generateStaticParams() {
   const docs = getAllDocs()
 
-  return docs.map((doc) => ({
-    slug: doc.slug,
-  }))
+  return withPlaceholderSlug(
+    docs.map((doc) => ({
+      slug: doc.slug,
+    }))
+  )
 }
 
 export async function GET(

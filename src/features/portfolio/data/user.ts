@@ -1,3 +1,4 @@
+import { getOgImageUrl } from "@/config/og-images"
 import type { User } from "@/features/portfolio/types/user"
 
 export const USER: User = {
@@ -37,8 +38,7 @@ export const USER: User = {
 `,
   avatar: "/monogram.svg",
   photo: "/hasan-mavlonov.jpg",
-  ogImage:
-    "/og/simple?title=Hasan%20Mavlonov&description=CTO%20%26%20Co-founder%2C%20MindForm%20AI",
+  ogImage: getOgImageUrl("home"),
   keywords: [
     "hasan mavlonov",
     "hasanmavlonov",
