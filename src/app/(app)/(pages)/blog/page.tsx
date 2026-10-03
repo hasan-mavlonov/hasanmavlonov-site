@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import type { Blog, WithContext } from "schema-dts"
 
 import { JSON_LD_ID } from "@/config/json-ld"
+import { getOgImageUrl, PAGE_OG_IMAGES } from "@/config/og-images"
 import { jsonLdBreadcrumbList, JsonLdScript } from "@/lib/json-ld"
 import { absoluteUrl } from "@/lib/utils"
 import {
@@ -15,10 +16,9 @@ import { PostListWithSearch } from "@/features/blog/components/post-list-with-se
 import { PostSearchInput } from "@/features/blog/components/post-search-input"
 import { getBlogPosts } from "@/features/doc/data/documents"
 
-const title = "Blog"
-const description = "Stories, milestones, and things I learn along the way."
+const { title, description } = PAGE_OG_IMAGES.blog
 
-const ogImage = `/og/simple?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`
+const ogImage = getOgImageUrl("blog")
 
 export const metadata: Metadata = {
   title,

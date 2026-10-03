@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next"
 
 import { SITE_INFO } from "@/config/site"
 
+export const dynamic = "force-static"
+
 /**
  * Generated rather than checked in as a static file, so the name and
  * description cannot drift from the ones the rest of the site reads out of

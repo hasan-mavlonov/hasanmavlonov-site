@@ -2,7 +2,35 @@ import { readFileSync } from "node:fs"
 import { join } from "node:path"
 import { ImageResponse } from "next/og"
 
+import { getBlogPostOgImageId, PAGE_OG_IMAGES } from "@/config/og-images"
+import { getBlogPosts } from "@/features/doc/data/documents"
+
 import { clampParam } from "../params"
+
+export const dynamic = "force-static"
+export const dynamicParams = false
+
+type OgImageText = { title: string; description: string }
+
+function getOgImageEntries(): Record<string, OgImageText> {
+  const posts = Object.fromEntries(
+    getBlogPosts().map((post) => [
+      getBlogPostOgImageId(post.slug),
+      {
+        title: post.metadata.title,
+        description: post.metadata.description,
+      },
+    ])
+  )
+
+  return { ...PAGE_OG_IMAGES, ...posts }
+}
+
+// The `.png` suffix is part of the param so the exported file carries an
+// extension and the static host serves it as image/png.
+export function generateStaticParams() {
+  return Object.keys(getOgImageEntries()).map((id) => ({ image: `${id}.png` }))
+}
 
 const geistSemiBold = readFileSync(
   join(process.cwd(), "src/assets/fonts/Geist-SemiBold.ttf")
@@ -12,11 +40,19 @@ const geistMonoRegular = readFileSync(
   join(process.cwd(), "src/assets/fonts/GeistMono-Regular.ttf")
 )
 
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url)
+export async function GET(
+  _request: Request,
+  { params }: RouteContext<"/og/[image]">
+) {
+  const { image } = await params
+  const entry = getOgImageEntries()[image.replace(/\.png$/, "")]
 
-  const title = clampParam(searchParams.get("title"), 160)
-  const description = clampParam(searchParams.get("description"), 320)
+  if (!entry) {
+    return new Response("Not found", { status: 404 })
+  }
+
+  const title = clampParam(entry.title, 160)
+  const description = clampParam(entry.description, 320)
 
   return new ImageResponse(
     <div tw="flex h-full w-full bg-black text-zinc-50">
@@ -87,9 +123,6 @@ export async function GET(request: Request) {
           weight: 400,
         },
       ],
-      headers: {
-        "Cache-Control": "public, max-age=3600, s-maxage=31536000, immutable",
-      },
     }
   )
 }

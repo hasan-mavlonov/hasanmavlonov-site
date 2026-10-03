@@ -67,8 +67,10 @@ npm run build
 npm start
 ```
 
-`npm start` honours the `PORT` environment variable, which is how Render runs
-it.
+The build is a static export: `next build` writes plain files to `out/`, and
+`scripts/finalize-export.mjs` then adds the URLs a static host cannot rewrite
+(`/blog/<slug>.md`, `/index.md`, `/rss`). `npm start` serves `out/` locally
+with `serve`, which honours the `PORT` environment variable.
 
 ## Before pushing
 
@@ -92,12 +94,23 @@ files in `src/features/doc/content/blog/`.
 
 ## Deployment
 
-Render web service, described by `render.yaml`:
+Render Static Site, described by `render.yaml`:
 
 - Build: `npm ci --include=dev && npm run build`
-- Start: `npm start`
+- Publish directory: `out`
 - `NEXT_PUBLIC_APP_URL` must be set at build time, since it is inlined into the
   client bundle and used for canonical URLs, the sitemap and Open Graph images
+
+Everything is rendered at build time, so there is no server to sleep or wake.
+That has three consequences:
+
+- `/insights` shows the OpenPanel numbers as of the last deploy. The
+  `OPENPANEL_*` variables are read during the build, never in the browser.
+- Open Graph images are PNGs generated per page and per post
+  (`/og/<id>.png`, listed in `src/config/og-images.ts`), not rendered from
+  query parameters.
+- Markdown negotiation via the `Accept` header is gone; agents use the `.md`
+  URLs and `/llms.txt` instead.
 
 Dev dependencies are needed to build, so do not set `NODE_ENV=production` on
 the build step.
