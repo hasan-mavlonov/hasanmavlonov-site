@@ -4,24 +4,6 @@ import type { Experience } from "@/features/portfolio/types/experiences"
 
 export const EXPERIENCES: Experience[] = [
   {
-    id: "mindform-ai",
-    companyName: "MindForm AI",
-    positions: [
-      {
-        id: "mindform-ai-cto",
-        title: "CTO & Co-founder",
-        employmentPeriod: {
-          start: "01.2026",
-        },
-        icon: <BrainCircuitIcon />,
-        description: `Building StableMind, the persistence layer that gives an agent a measurable Big Five identity it keeps across sessions, models and restarts. Backed by NVIDIA Inception.`,
-        skills: ["AI agents", "Personality modelling", "Infrastructure"],
-        isExpanded: true,
-      },
-    ],
-    isCurrentEmployer: true,
-  },
-  {
     id: "defex",
     companyName: "Defex",
     companyWebsite: "https://defex.app",
@@ -37,6 +19,24 @@ export const EXPERIENCES: Experience[] = [
         icon: <BotIcon />,
         description: `Self-teaching assembly robots for manufacturing: a robot attempts an assembly, physically tests the joint and learns from the result. Backed by Google for Startups and Z Fellows.`,
         skills: ["Robotics", "Reinforcement learning", "Manufacturing"],
+        isExpanded: true,
+      },
+    ],
+    isCurrentEmployer: true,
+  },
+  {
+    id: "mindform-ai",
+    companyName: "MindForm AI",
+    positions: [
+      {
+        id: "mindform-ai-cto",
+        title: "CTO & Co-founder",
+        employmentPeriod: {
+          start: "01.2026",
+        },
+        icon: <BrainCircuitIcon />,
+        description: `Building StableMind, the persistence layer that gives an agent a measurable Big Five identity it keeps across sessions, models and restarts. Backed by NVIDIA Inception.`,
+        skills: ["AI agents", "Personality modelling", "Infrastructure"],
         isExpanded: true,
       },
     ],
