@@ -37,7 +37,7 @@ export const USER: User = {
   about: `I'm Hasan. I'm CTO at [Defex](https://defex.app), building self-teaching assembly robots, and CTO and co-founder of [MindForm AI](https://mindform-ai.com), where we integrate personality into AI.
 `,
   avatar: "/monogram.svg",
-  photo: "/hasan-mavlonov.jpg",
+  photo: "/hasan-mavlonov-portrait.jpg",
   ogImage: getOgImageUrl("home"),
   keywords: [
     "hasan mavlonov",
