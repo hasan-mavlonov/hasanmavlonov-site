@@ -5,7 +5,7 @@ import type { Experience } from "@/features/portfolio/types/experiences"
 export const EXPERIENCES: Experience[] = [
   {
     id: "defex",
-    companyName: "Defex",
+    companyName: "Defex Robotics",
     companyWebsite: "https://defex.app",
     location: "San Francisco, USA",
     locationType: "Remote",
