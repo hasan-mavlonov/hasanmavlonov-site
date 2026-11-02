@@ -12,7 +12,13 @@ import { RevealEncodedTextScript } from "./reveal-encoded-text"
  * never served as plaintext for scrapers to lift. The href waits for the
  * client for the same reason.
  */
-export function ContactEmail({ emailB64 }: { emailB64: string }) {
+export function ContactEmail({
+  emailB64,
+  className = "link-underline",
+}: {
+  emailB64: string
+  className?: string
+}) {
   const id = useId()
   const isClient = useIsClient()
   const email = decodeEmail(emailB64)
@@ -20,7 +26,7 @@ export function ContactEmail({ emailB64 }: { emailB64: string }) {
   return (
     <>
       <a
-        className="link-underline"
+        className={className}
         href={isClient ? `mailto:${email}` : ""}
         id={id}
         suppressHydrationWarning

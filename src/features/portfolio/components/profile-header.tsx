@@ -39,7 +39,7 @@ export function ProfileHeader() {
             )}
           </div>
 
-          <FlipSentences className="h-12.5 border-t border-line py-1 pl-4 sm:h-9">
+          <FlipSentences className="h-17 border-t border-line py-1 pl-4 sm:h-9">
             {USER.flipSentences}
           </FlipSentences>
         </div>

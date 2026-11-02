@@ -8,19 +8,19 @@ export const USER: User = {
   username: "hasan-mavlonov",
   bio: "CTO and co-founder building persistent personality and identity infrastructure for AI agents.",
   flipSentences: [
-    "CTO at Defex, self-teaching assembly robots.",
+    "CTO at Defex Robotics, self-teaching assembly robots.",
     "CTO and co-founder, MindForm AI.",
     "Trying to integrate personality into AI.",
     "B.Sc. in Artificial Intelligence at ECUST.",
   ],
   address: "Shanghai, China",
-  emailB64: "aGFzYW5AbWluZGZvcm0tYWkuY29t", // base64 encoded
+  emailB64: "aG1hdmxhbm92NzlAZ21haWwuY29t", // base64 encoded
   website: "https://hasanmavlonov.com",
   jobTitle: "CTO & Co-founder, MindForm AI",
   jobs: [
     {
       title: "CTO",
-      company: "Defex",
+      company: "Defex Robotics",
       experienceId: "defex",
     },
     {
@@ -34,7 +34,7 @@ export const USER: User = {
       experienceId: "ecust",
     },
   ],
-  about: `I'm Hasan. I'm CTO at [Defex](https://defex.app), building self-teaching assembly robots, and CTO and co-founder of [MindForm AI](https://mindform-ai.com), where we integrate personality into AI.
+  about: `I'm Hasan. I'm CTO at [Defex Robotics](https://defex.app), building self-teaching assembly robots, and CTO and co-founder of [MindForm AI](https://mindform-ai.com), where we integrate personality into AI.
 `,
   avatar: "/monogram.svg",
   photo: "/hasan-mavlonov-portrait.jpg",
@@ -47,6 +47,7 @@ export const USER: User = {
     "mindform ai",
     "stablemind",
     "defex",
+    "defex robotics",
     "cto",
     "founder",
     "ai agents",
