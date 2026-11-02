@@ -14,7 +14,7 @@ export const USER: User = {
     "B.Sc. in Artificial Intelligence at ECUST.",
   ],
   address: "Shanghai, China",
-  emailB64: "aGFzYW5AbWluZGZvcm0tYWkuY29t", // base64 encoded
+  emailB64: "aG1hdmxhbm92NzlAZ21haWwuY29t", // base64 encoded
   website: "https://hasanmavlonov.com",
   jobTitle: "CTO & Co-founder, MindForm AI",
   jobs: [

@@ -30,6 +30,12 @@ export type Experience = {
   companyIcon?: React.ReactElement
   /** URL to the company's website. */
   companyWebsite?: string
+  /**
+   * Base64-encoded contact address for this company, shown under the company
+   * name. Encoded for the same reason as `User.emailB64`: the plaintext never
+   * reaches the served HTML.
+   */
+  emailB64?: string
   location?: string
   locationType?: "On-site" | "Hybrid" | "Remote"
   /** Roles held at this company; keep newest first for display. */

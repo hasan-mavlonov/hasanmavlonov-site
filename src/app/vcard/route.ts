@@ -3,6 +3,7 @@ import { decodeEmail, decodePhoneNumber } from "@/utils/string"
 import sharp from "sharp"
 import VCard from "vcard-creator"
 
+import { EXPERIENCES } from "@/features/portfolio/data/experiences"
 import { USER } from "@/features/portfolio/data/user"
 
 export const revalidate = false
@@ -17,6 +18,12 @@ export async function GET() {
     .addAddress(USER.address)
     .addEmail(decodeEmail(USER.emailB64))
     .addURL(USER.website)
+
+  for (const experience of EXPERIENCES) {
+    if (experience.emailB64) {
+      card.addEmail(decodeEmail(experience.emailB64), "WORK")
+    }
+  }
 
   if (USER.phoneNumberB64) {
     card.addPhoneNumber(decodePhoneNumber(USER.phoneNumberB64))

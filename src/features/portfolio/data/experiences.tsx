@@ -7,6 +7,8 @@ export const EXPERIENCES: Experience[] = [
     id: "defex",
     companyName: "Defex Robotics",
     companyWebsite: "https://defex.app",
+    // hasanmavlonov@defexrobotics.com
+    emailB64: "aGFzYW5tYXZsb25vdkBkZWZleHJvYm90aWNzLmNvbQ==",
     location: "San Francisco, USA",
     locationType: "Remote",
     positions: [
@@ -27,6 +29,8 @@ export const EXPERIENCES: Experience[] = [
   {
     id: "mindform-ai",
     companyName: "MindForm AI",
+    // hasan@mindform-ai.com
+    emailB64: "aGFzYW5AbWluZGZvcm0tYWkuY29t",
     positions: [
       {
         id: "mindform-ai-cto",

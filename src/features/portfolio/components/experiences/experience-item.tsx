@@ -4,6 +4,7 @@ import { addQueryParams } from "@/utils/url"
 import { UTM_PARAMS } from "@/config/site"
 
 import type { Experience } from "../../types/experiences"
+import { ContactEmail } from "../contact-email"
 import { ExperiencePositionItem } from "./experience-position-item"
 
 export function ExperienceItem({ experience }: { experience: Experience }) {
@@ -33,20 +34,29 @@ export function ExperienceItem({ experience }: { experience: Experience }) {
         </div>
 
         <div className="flex min-w-0 flex-1 flex-col gap-x-3 gap-y-1 pr-1 sm:flex-row sm:items-baseline sm:justify-between">
-          <h3 className="text-xl/6 font-medium">
-            {experience.companyWebsite ? (
-              <a
-                className="link"
-                href={addQueryParams(experience.companyWebsite, UTM_PARAMS)}
-                target="_blank"
-                rel="noopener"
-              >
-                {experience.companyName}
-              </a>
-            ) : (
-              experience.companyName
+          <div className="flex min-w-0 flex-col gap-y-0.5">
+            <h3 className="text-xl/6 font-medium">
+              {experience.companyWebsite ? (
+                <a
+                  className="link"
+                  href={addQueryParams(experience.companyWebsite, UTM_PARAMS)}
+                  target="_blank"
+                  rel="noopener"
+                >
+                  {experience.companyName}
+                </a>
+              ) : (
+                experience.companyName
+              )}
+            </h3>
+
+            {experience.emailB64 && (
+              <ContactEmail
+                className="w-fit text-sm break-words text-muted-foreground link-underline"
+                emailB64={experience.emailB64}
+              />
             )}
-          </h3>
+          </div>
 
           <p className="flex min-w-0 items-center gap-1.5 text-sm whitespace-nowrap text-muted-foreground empty:hidden">
             {experience.location && (
