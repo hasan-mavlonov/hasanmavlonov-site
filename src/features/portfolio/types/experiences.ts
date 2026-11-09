@@ -21,18 +21,25 @@ export type ExperiencePosition = {
   isExpanded?: boolean
 }
 
-/** An investor or programme backing a company, drawn as its own mark. */
-export type ExperienceBacker = {
+/**
+ * An organisation a company is tied to, drawn as its own mark. `relation`
+ * names the tie and labels the row, so an investor and a research partner can
+ * share one list without either being described as the other.
+ */
+export type ExperienceAffiliation = {
+  /** Row label, e.g. "Backed by". Entries sharing one are drawn together. */
+  relation: string
   /** Accessible name for the artwork. */
   name: string
-  /** Path under /public to the backer's own, unaltered artwork. */
+  /** Path under /public to the organisation's own, unaltered artwork. */
   src: string
   /** Intrinsic size of the artwork, so the row reserves the right space. */
   width: number
   height: number
   /**
    * Text drawn beside the mark. Omitted for artwork that already carries the
-   * backer's name, which is instead drawn larger so its wordmark stays legible.
+   * organisation's name, which is instead drawn larger so its own wordmark
+   * stays legible.
    */
   caption?: string
 }
@@ -56,8 +63,8 @@ export type Experience = {
   locationType?: "On-site" | "Hybrid" | "Remote"
   /** Roles held at this company; keep newest first for display. */
   positions: ExperiencePosition[]
-  /** Investors and programmes backing this company. */
-  backers?: ExperienceBacker[]
+  /** Investors, programmes and partners tied to this company. */
+  affiliations?: ExperienceAffiliation[]
   /** Marks the company as the current employer for highlighting. */
   isCurrentEmployer?: boolean
 }

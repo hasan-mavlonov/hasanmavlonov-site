@@ -24,10 +24,11 @@ export const EXPERIENCES: Experience[] = [
         isExpanded: true,
       },
     ],
-    backers: [
+    affiliations: [
       {
+        relation: "Backed by",
         name: "Y Combinator",
-        src: "/backers/y-combinator.svg",
+        src: "/affiliations/y-combinator.svg",
         width: 24,
         height: 24,
         caption: "Y Combinator \u00b7 W27",
@@ -53,12 +54,20 @@ export const EXPERIENCES: Experience[] = [
         isExpanded: true,
       },
     ],
-    backers: [
+    affiliations: [
       {
+        relation: "Backed by",
         name: "NVIDIA Inception Program member",
-        src: "/backers/nvidia-inception.svg",
+        src: "/affiliations/nvidia-inception.svg",
         width: 500,
         height: 216,
+      },
+      {
+        relation: "In collaboration with",
+        name: "CNRS",
+        src: "/affiliations/cnrs.svg",
+        width: 55,
+        height: 55,
       },
     ],
     isCurrentEmployer: true,
