@@ -34,7 +34,7 @@ export const USER: User = {
       experienceId: "ecust",
     },
   ],
-  about: `I'm Hasan. I'm CTO at [Defex Robotics](https://defex.app), building self-teaching assembly robots, and CTO and co-founder of [MindForm AI](https://mindform-ai.com), where we integrate personality into AI.
+  about: `I'm Hasan. I'm CTO at [Defex Robotics](https://defexrobotics.com), building self-teaching assembly robots, and CTO and co-founder of [MindForm AI](https://mindform-ai.com), where we integrate personality into AI.
 `,
   avatar: "/monogram.svg",
   photo: "/hasan-mavlonov-portrait.jpg",

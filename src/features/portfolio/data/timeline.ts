@@ -30,13 +30,13 @@ Mentored 250+ developers at Google DevFest '25 and Build With AI '25 in Shanghai
     year: 2026,
     content: `Co-founded MindForm AI in January as CTO, building StableMind: persistent personality and identity infrastructure for AI agents.
 
-Joined Defex Robotics as CTO in March: self-teaching assembly robots for manufacturing, backed by Google for Startups and Z Fellows.
+Joined Defex Robotics as CTO in March: self-teaching assembly robots for manufacturing.
 
-Defex Robotics joined Y Combinator.
+Defex Robotics joined Y Combinator's W27 batch.
 
 Published StableMind, a preprint on a two-timescale architecture for persistent personality in LLM agents.
 
-Partnered with CNRS on a benchmark for measuring agent identity.
+Partnered with CNRS in France on a benchmark for measuring agent identity.
 
 Recognized in the 2026 Shanghai University Computer Application Competition for an AI-powered ancient engineering simulation system.
 

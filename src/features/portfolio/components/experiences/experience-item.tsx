@@ -2,6 +2,7 @@ import Image from "next/image"
 import { addQueryParams } from "@/utils/url"
 
 import { UTM_PARAMS } from "@/config/site"
+import { cn } from "@/lib/utils"
 
 import type { Experience } from "../../types/experiences"
 import { ContactEmail } from "../contact-email"
@@ -82,6 +83,33 @@ export function ExperienceItem({ experience }: { experience: Experience }) {
           <ExperiencePositionItem key={position.id} position={position} />
         ))}
       </div>
+
+      {experience.backers && experience.backers.length > 0 && (
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-3 pl-9">
+          <span className="text-sm text-muted-foreground">Backed by</span>
+
+          {experience.backers.map((backer) => (
+            <span key={backer.name} className="flex items-center gap-2">
+              <Image
+                src={backer.src}
+                alt={backer.name}
+                width={backer.width}
+                height={backer.height}
+                /* Artwork that names itself is drawn larger so its own
+                   wordmark stays readable; a bare glyph sits at text size. */
+                className={cn("w-auto", backer.caption ? "h-6" : "h-14")}
+                unoptimized
+              />
+
+              {backer.caption && (
+                <span className="text-sm text-muted-foreground">
+                  {backer.caption}
+                </span>
+              )}
+            </span>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
