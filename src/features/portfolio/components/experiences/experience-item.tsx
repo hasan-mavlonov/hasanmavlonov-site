@@ -2,10 +2,31 @@ import Image from "next/image"
 import { addQueryParams } from "@/utils/url"
 
 import { UTM_PARAMS } from "@/config/site"
+import { cn } from "@/lib/utils"
 
-import type { Experience } from "../../types/experiences"
+import type { Experience, ExperienceAffiliation } from "../../types/experiences"
 import { ContactEmail } from "../contact-email"
 import { ExperiencePositionItem } from "./experience-position-item"
+
+/**
+ * Collects marks under their shared relation, keeping both the relations and
+ * the marks within each in the order the data declares them, so one row is
+ * drawn per kind of tie rather than one per organisation.
+ */
+function groupByRelation(affiliations: ExperienceAffiliation[] | undefined) {
+  const grouped = new Map<string, ExperienceAffiliation[]>()
+
+  for (const affiliation of affiliations ?? []) {
+    const marks = grouped.get(affiliation.relation)
+    if (marks) {
+      marks.push(affiliation)
+    } else {
+      grouped.set(affiliation.relation, [affiliation])
+    }
+  }
+
+  return [...grouped]
+}
 
 export function ExperienceItem({ experience }: { experience: Experience }) {
   return (
@@ -82,6 +103,36 @@ export function ExperienceItem({ experience }: { experience: Experience }) {
           <ExperiencePositionItem key={position.id} position={position} />
         ))}
       </div>
+
+      {groupByRelation(experience.affiliations).map(([relation, marks]) => (
+        <div
+          key={relation}
+          className="flex flex-wrap items-center gap-x-3 gap-y-2 pl-9"
+        >
+          <span className="text-sm text-muted-foreground">{relation}</span>
+
+          {marks.map((mark) => (
+            <span key={mark.name} className="flex items-center gap-2">
+              <Image
+                src={mark.src}
+                alt={mark.name}
+                width={mark.width}
+                height={mark.height}
+                /* Artwork that names itself is drawn larger so its own
+                   wordmark stays readable; a bare glyph sits at text size. */
+                className={cn("w-auto", mark.caption ? "h-6" : "h-14")}
+                unoptimized
+              />
+
+              {mark.caption && (
+                <span className="text-sm text-muted-foreground">
+                  {mark.caption}
+                </span>
+              )}
+            </span>
+          ))}
+        </div>
+      ))}
     </div>
   )
 }
