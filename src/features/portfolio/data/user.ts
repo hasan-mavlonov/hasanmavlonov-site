@@ -46,6 +46,8 @@ export const USER: User = {
     "mavlonov",
     "mindform ai",
     "stablemind",
+    "y combinator",
+    "cnrs",
     "defex",
     "defex robotics",
     "cto",

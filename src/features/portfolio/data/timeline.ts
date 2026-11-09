@@ -32,7 +32,11 @@ Mentored 250+ developers at Google DevFest '25 and Build With AI '25 in Shanghai
 
 Joined Defex Robotics as CTO in March: self-teaching assembly robots for manufacturing, backed by Google for Startups and Z Fellows.
 
+Defex Robotics joined Y Combinator.
+
 Published StableMind, a preprint on a two-timescale architecture for persistent personality in LLM agents.
+
+Partnered with CNRS on a benchmark for measuring agent identity.
 
 Recognized in the 2026 Shanghai University Computer Application Competition for an AI-powered ancient engineering simulation system.
 
